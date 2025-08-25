@@ -13,6 +13,9 @@ nav {
   height: 100vh;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
 }
 
 nav a {
@@ -27,7 +30,50 @@ nav a:hover {
   text-decoration: underline;
 }
 
+/* When collapsed */
+nav.collapsed {
+  transform: translateX(-100%);
+}
+
+/* Main content shifts left/right */
 main {
   margin-left: 220px;
   padding: 2rem;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+main.expanded {
+  margin-left: 20px; /* small gap when nav hidden */
+}
+
+/* Toggle button */
+.menu-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.menu-toggle:hover {
+  background-color: #732d91;
+}
+
+/* Mobile-first tweak: hide nav by default on smaller screens */
+@media (max-width: 768px) {
+  nav {
+    transform: translateX(-100%);
+  }
+  nav.active {
+    transform: translateX(0);
+  }
+  main {
+    margin-left: 20px;
+  }
 }
