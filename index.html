@@ -7,28 +7,11 @@
 </head>
 <body>
   <button class="menu-toggle">☰</button>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="schedule.html">Schedule</a>
-    <a href="story.html">Our Story</a>
-    <a href="registry.html">Registry</a>
-    <a href="faqs.html">FAQs</a>
-  </nav>
+  <nav></nav>
   <main>
     <h1>Amanda + Jordan</h1>
     <p style="font-size: 1.5rem;">October 17, 2026</p>
   </main>
-
-  <script>
-    const toggleBtn = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
-    const main = document.querySelector('main');
-
-    toggleBtn.addEventListener('click', () => {
-      nav.classList.toggle('collapsed');
-      nav.classList.toggle('active'); // for mobile
-      main.classList.toggle('expanded');
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

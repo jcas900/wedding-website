@@ -6,6 +6,7 @@ body {
   color: #333;
 }
 
+/* Sidebar nav */
 nav {
   width: 200px;
   background-color: #f2e8df;
@@ -30,42 +31,19 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* When collapsed */
-nav.collapsed {
-  transform: translateX(-100%);
-}
-
-/* Main content shifts left/right */
+/* Main content */
 main {
   margin-left: 220px;
   padding: 2rem;
   transition: margin-left 0.3s ease-in-out;
 }
 
-main.expanded {
-  margin-left: 20px; /* small gap when nav hidden */
-}
-
-/* Toggle button */
+/* Hamburger button – hidden on desktop */
 .menu-toggle {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  background-color: #8e44ad;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border-radius: 5px;
-  z-index: 1000;
+  display: none;
 }
 
-.menu-toggle:hover {
-  background-color: #732d91;
-}
-
-/* Mobile-first tweak: hide nav by default on smaller screens */
+/* Mobile layout */
 @media (max-width: 768px) {
   nav {
     transform: translateX(-100%);
@@ -75,5 +53,24 @@ main.expanded {
   }
   main {
     margin-left: 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background-color: #8e44ad;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+
+  .menu-toggle:hover {
+    background-color: #732d91;
   }
 }
