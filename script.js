@@ -1,3 +1,8 @@
+// Check authentication
+if (!localStorage.getItem('isAuthenticated')) {
+  window.location.href = 'login.html';
+}
+
 // Load shared nav
 fetch("nav.html")
   .then(response => response.text())

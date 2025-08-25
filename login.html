@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome - Amanda + Jordan's Wedding</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .login-form {
+            margin-top: 20px;
+        }
+        .login-form input {
+            padding: 10px;
+            width: 200px;
+            margin-bottom: 10px;
+        }
+        .login-form button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Amanda + Jordan's Wedding</h1>
+        <div class="login-form">
+            <input type="password" id="password" placeholder="Enter Password" />
+            <br>
+            <button onclick="checkPassword()">Enter Site</button>
+            <p id="error-message" class="error-message">Incorrect password.</p>
+        </div>
+    </div>
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if (password === "moonda") {
+                localStorage.setItem('isAuthenticated', 'true');
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+                document.getElementById('password').value = '';
+            }
+        }
+
+        // Add enter key support
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Redirect to login if not authenticated
+        if (window.location.pathname.indexOf('login.html') === -1) {
+            if (!localStorage.getItem('isAuthenticated')) {
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>
