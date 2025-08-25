@@ -5,12 +5,25 @@ fetch("nav.html")
     document.querySelector("nav").innerHTML = data;
   });
 
-// Mobile toggle
+// Navigation toggle for all screen sizes
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".menu-toggle");
   const nav = document.querySelector("nav");
 
+  // Set initial state (menu closed)
+  nav.classList.remove("active");
+
   toggleBtn.addEventListener("click", () => {
     nav.classList.toggle("active");
+    // Update button text based on menu state
+    toggleBtn.textContent = nav.classList.contains("active") ? "×" : "☰";
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!nav.contains(e.target) && !toggleBtn.contains(e.target) && nav.classList.contains("active")) {
+      nav.classList.remove("active");
+      toggleBtn.textContent = "☰";
+    }
   });
 });

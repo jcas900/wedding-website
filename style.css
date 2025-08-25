@@ -38,9 +38,37 @@ main {
   transition: margin-left 0.3s ease-in-out;
 }
 
-/* Hamburger button – hidden on desktop */
+/* Hamburger button - visible on all screens */
 .menu-toggle {
-  display: none;
+  display: block;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 2000; /* sits on top of nav */
+}
+
+.menu-toggle:hover {
+  background-color: #732d91;
+}
+
+/* Layout for all screens */
+nav {
+  transform: translateX(-100%);
+}
+
+nav.active {
+  transform: translateX(0);
+}
+
+main {
+  margin-left: 20px;
 }
 
 /* Mobile layout */
@@ -67,8 +95,9 @@ main {
     font-size: 1.2rem;
     cursor: pointer;
     border-radius: 5px;
-    z-index: 1000;
-  }
+    z-index: 2000; /* sits on top of nav */
+}
+
 
   .menu-toggle:hover {
     background-color: #732d91;
