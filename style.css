@@ -1,21 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+
 :root {
   --nav-width: 200px;
-  --primary-color: #8e44ad;
-  --primary-color-dark: #732d91;
-  --bg-color: #f9f6f1;
-  --nav-bg: #f2e8df;
-  --text-color: #333;
+  --primary-color: #4a4a4a;
+  --primary-color-dark: #2a2a2a;
+  --bg-color: #fafafa;
+  --nav-bg: #f0f0f0;
+  --text-color: #333333;
   --transition-speed: 0.3s;
   --spacing: 1rem;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Montserrat', sans-serif;
 }
 
 /* Base styles */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-body);
+  font-weight: 300;
   background-color: var(--bg-color);
   color: var(--text-color);
   min-height: 100vh;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
 }
 
 /* Sidebar nav */
@@ -24,7 +31,7 @@ nav {
   background-color: var(--nav-bg);
   padding: calc(var(--spacing) * 2) var(--spacing);
   height: 100vh;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: 1px 0 3px rgba(0,0,0,0.05);
   position: fixed;
   top: 0;
   left: 0;
@@ -42,7 +49,10 @@ nav a {
   margin: var(--spacing) 0;
   text-decoration: none;
   color: var(--primary-color);
-  font-weight: bold;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
 }
 
 nav a:first-child {
@@ -84,16 +94,59 @@ main {
   left: var(--spacing);
   background-color: var(--primary-color);
   color: white;
-  border: none;
+  border: 1px solid rgba(0,0,0,0.1);
   padding: calc(var(--spacing) * 0.5) var(--spacing);
   font-size: 1.2rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
   z-index: 2000;
 }
 
 .menu-toggle:hover {
   background-color: var(--primary-color-dark);
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+/* Story page styles */
+.story-image {
+  max-width: 450px;
+  width: 85%;
+  height: auto;
+  margin: 2rem auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: block;
+}
+
+.story-caption {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-top: 1.5rem;
+  font-style: italic;
+  letter-spacing: 0.5px;
 }
 
 /* Mobile layout */
@@ -105,5 +158,24 @@ main {
   
   main {
     max-width: 100%;
+  }
+
+  .menu-toggle {
+    padding: calc(var(--spacing) * 0.75) calc(var(--spacing) * 1.25);
+    font-size: 1.5rem;
+  }
+
+  nav {
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 1.5);
+  }
+
+  nav a {
+    font-size: 1.4rem;
+    margin: calc(var(--spacing) * 1.5) 0;
+    padding: calc(var(--spacing) * 0.5) 0;
+  }
+
+  nav a:first-child {
+    margin-top: calc(var(--spacing) * 5);
   }
 }
