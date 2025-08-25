@@ -56,8 +56,12 @@ nav a:hover {
 /* Content layout */
 .content-wrapper {
   width: 100%;
+  min-height: 100vh;
   margin-left: 0;
   transition: margin-left var(--transition-speed) ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body.nav-active .content-wrapper {
@@ -70,6 +74,7 @@ main {
   margin: 0 auto;
   padding: calc(var(--spacing) * 2) var(--spacing);
   box-sizing: border-box;
+  text-align: center;
 }
 
 /* Hamburger button */
