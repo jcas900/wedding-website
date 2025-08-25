@@ -1,2 +1,2 @@
 # wedding-website
-Amanda and Jordan's Wedding Website
+Amanda and Jordan's Wedding Website (WIP)
