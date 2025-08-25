@@ -174,20 +174,25 @@ h3 {
   }
 
   nav {
-    padding: 2rem 1.5rem;
+    padding: 0;
     width: 100%;
     background-color: rgba(240, 240, 240, 0.98);
     backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   nav a {
     font-size: 1.6rem;
-    margin: calc(var(--spacing) * 2) 0;
+    margin: calc(var(--spacing) * 1.5) 0;
     padding: calc(var(--spacing) * 1) 0;
     text-align: center;
     display: block;
-    width: 100%;
+    width: 80%;
     border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: color 0.2s ease;
   }
 
   nav a:first-child {
