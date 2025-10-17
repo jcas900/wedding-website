@@ -8,6 +8,16 @@ fetch("nav.html")
   .then(response => response.text())
   .then(data => {
     document.querySelector("nav").innerHTML = data;
+    
+    // Highlight current page in navigation after nav is loaded
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll(".desktop-nav-right a").forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
   });
 
 // Navigation toggle for all screen sizes
