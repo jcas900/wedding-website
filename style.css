@@ -75,7 +75,7 @@ body {
     left: 0;
     right: 0;
     background-color: var(--nav-bg);
-    padding: 3rem 2rem;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -120,7 +120,7 @@ body {
 
   /* Add padding to main content to account for fixed nav */
   main {
-    padding-top: calc(var(--spacing) * 5);
+    padding-top: 0;
   }
 }
 
@@ -172,7 +172,8 @@ body {
   transition: margin-left var(--transition-speed) ease-in-out;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 120px;
 }
 
 body.nav-active .content-wrapper {
@@ -182,7 +183,7 @@ body.nav-active .content-wrapper {
 
 main {
   max-width: 1200px;
-  width: 100%;
+  width: 85%;
   margin: 0 auto;
   padding: calc(var(--spacing) * 2) var(--spacing);
   box-sizing: border-box;
@@ -219,7 +220,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 4.5rem;
   font-weight: 600;
 }
 
@@ -320,8 +321,8 @@ h3 {
 
 /* Story page styles */
 .story-image {
-  max-width: 450px;
-  width: 85%;
+  max-width: 900px;
+  width: 100%;
   height: auto;
   margin: 2rem auto;
   border-radius: 5px;
@@ -343,10 +344,24 @@ h3 {
   .content-wrapper {
     width: 100%;
     margin-left: 0;
+    padding-top: 80px;
   }
   
   main {
     max-width: 100%;
+    width: 95%;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+  }
+  
+  p[style*="font-size: 2.5rem"] {
+    font-size: 2rem !important;
+  }
+  
+  p[style*="font-size: 1.5rem"] {
+    font-size: 1.2rem !important;
   }
 
   .menu-toggle {
@@ -372,13 +387,21 @@ h3 {
     align-items: center;
   }
 
+  nav .mobile-nav-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   nav a {
     font-size: 1.6rem;
     margin: calc(var(--spacing) * 1.5) 0;
     padding: calc(var(--spacing) * 1) 0;
     text-align: center;
-    display: block;
-    width: 80%;
+    display: flex;
+    justify-content: center;
+    width: 60%;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     transition: color 0.2s ease;
   }
