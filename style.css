@@ -277,6 +277,15 @@ h3 {
   text-decoration: underline;
 }
 
+.transportation-info {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin-top: 2rem;
+  font-style: italic;
+}
+
 .book-hotel-button {
   display: inline-block;
   margin-top: 1.5rem;
