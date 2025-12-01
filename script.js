@@ -24,23 +24,57 @@ fetch("nav.html")
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".menu-toggle");
   const nav = document.querySelector("nav");
+  const mobileNavContent = document.querySelector('.mobile-nav-content');
 
   // Set initial state (menu closed)
   nav.classList.remove("active");
+  document.body.classList.remove('nav-active');
+
+  // preserve scroll position when opening menu
+  let savedScrollY = 0;
+
+  function openMenu() {
+    // save scroll position
+    savedScrollY = window.scrollY || window.pageYOffset || 0;
+    // prevent background from scrolling: fix body and offset top so page doesn't jump
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${savedScrollY}px`;
+    document.body.classList.add('nav-active');
+
+    // show nav
+    nav.classList.add('active');
+    // ensure nav scroll starts at top
+    try { nav.scrollTop = 0; } catch(e) {}
+    if (mobileNavContent) try { mobileNavContent.scrollTop = 0; } catch(e) {}
+
+    toggleBtn.textContent = '×';
+  }
+
+  function closeMenu() {
+    // hide nav
+    nav.classList.remove('active');
+    document.body.classList.remove('nav-active');
+
+    // restore body scroll position
+    document.body.style.position = '';
+    document.body.style.top = '';
+    window.scrollTo(0, savedScrollY);
+
+    toggleBtn.textContent = '☰';
+  }
 
   toggleBtn.addEventListener("click", () => {
-    nav.classList.toggle("active");
-    document.body.classList.toggle("nav-active");
-    // Update button text based on menu state
-    toggleBtn.textContent = nav.classList.contains("active") ? "×" : "☰";
+    if (nav.classList.contains('active')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
   // Close menu when clicking outside
   document.addEventListener("click", (e) => {
     if (!nav.contains(e.target) && !toggleBtn.contains(e.target) && nav.classList.contains("active")) {
-      nav.classList.remove("active");
-      document.body.classList.remove("nav-active");
-      toggleBtn.textContent = "☰";
+      closeMenu();
     }
   });
 });

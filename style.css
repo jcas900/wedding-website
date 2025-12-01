@@ -29,21 +29,19 @@ body {
 /* Mobile Navigation */
 @media (max-width: 768px) {
   nav {
-    /* make the mobile nav fill the phone screen horizontally for comfortable tap targets */
-    width: 100vw; /* full viewport width */
-    max-width: 100%;
+    /* cover entire viewport explicitly so it can't show background content */
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    width: 100vw;
+    height: 100dvh; /* dynamic viewport height to include mobile UI */
+    min-height: 100vh;
     background-color: var(--nav-bg);
     padding: calc(var(--spacing) * 3) var(--spacing);
-    height: 100vh;
     box-shadow: 1px 0 6px rgba(0,0,0,0.08);
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translateX(-100%);
     z-index: 1000;
+    transform: translateX(-100%);
     transition: transform var(--transition-speed) ease-in-out;
-    /* allow the nav itself to scroll on mobile so long lists don't get cut off */
-    overflow-y: auto;
+    overflow-y: auto; /* allow scrolling of nav content */
     -webkit-overflow-scrolling: touch;
   }
 
@@ -51,9 +49,24 @@ body {
     transform: translateX(0);
   }
 
-  /* prevent background from scrolling when nav is open */
-  body.nav-active {
-    overflow: hidden;
+  /* ensure the nav container paints an opaque background so nothing shows through */
+  nav,
+  nav * {
+    background-clip: padding-box;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100dvh; /* ensure content area fills viewport height */
+    box-sizing: border-box;
+    padding-top: calc(var(--spacing) * 0.5);
+    gap: 1rem;
+    padding-bottom: 5rem; /* keep space for last link above system UI */
   }
 
   .desktop-nav-content {
