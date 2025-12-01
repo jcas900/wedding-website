@@ -42,7 +42,9 @@ body {
     transform: translateX(-100%);
     z-index: 1000;
     transition: transform var(--transition-speed) ease-in-out;
-    overflow: hidden; /* ensure content stays inside the nav area */
+    /* allow the nav itself to scroll on mobile so long lists don't get cut off */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   nav.active {
@@ -68,6 +70,8 @@ body {
     box-sizing: border-box;
     padding-top: calc(var(--spacing) * 0.5);
     gap: 1rem;
+    /* ensure the last link isn't flush to the bottom and can be scrolled above the edge */
+    padding-bottom: 4rem;
   }
 
   .mobile-nav-content a {
