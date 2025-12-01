@@ -44,3 +44,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Blur registry buttons on pageshow/load/popstate to prevent sticky hover/fill when returning via back nav
+(function() {
+  function clearRegistryButtonFocus() {
+    try {
+      var active = document.activeElement;
+      if (!active) return;
+      if (active.classList && active.classList.contains('registry-button')) {
+        active.blur();
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  window.addEventListener('pageshow', function () {
+    setTimeout(clearRegistryButtonFocus, 0);
+  });
+
+  window.addEventListener('load', function () {
+    setTimeout(clearRegistryButtonFocus, 0);
+  });
+
+  window.addEventListener('popstate', function () {
+    setTimeout(clearRegistryButtonFocus, 0);
+  });
+})();

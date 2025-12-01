@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registry</title>
-  <link rel="stylesheet" href="style.css" />
+  <!-- keep cache-busted stylesheet so users pick up updates quickly -->
+  <link rel="stylesheet" href="style.css?v=20251130a" />
 </head>
 <body>
   <nav></nav>
@@ -12,8 +13,17 @@
   <div class="content-wrapper">
     <main>
       <h1>Registry</h1>
-      <p><a href="https://www.realtor.com/realestateandhomes-detail/111-W-57th-St_New-York_NY_10019_M97615-40985?from=srp-list-card" target="_blank">Our First Home</a></p>
-      <p style="font-size: 0.9em; font-style: italic; color: #666; margin-top: 5px;">(all contributions bring us closer to our goal)</p>
+
+      <section class="registry-section">
+        <div class="registry-buttons">
+          <a class="registry-button registry-button-link" href="https://currenthomeny.com/apps/giftregistry/registry/407590?_r=1&utm_source=gift_reggie&utm_medium=gift_reggie&utm_campaign=gift_reggie&utm_content=407590" target="_blank" rel="noopener">Current Home</a>
+
+          <a class="registry-button registry-button-link" href="https://www.bloomingdales.com/registry/Amanda-Shapiro-Jordan-Castleman/1191195" target="_blank" rel="noopener">Bloomingdale's</a>
+
+          <button id="honeymoon-button" class="registry-button registry-button-link" type="button">Honeymoon Fund</button>
+        </div>
+      </section>
+
     </main>
   </div>
   <script src="script.js"></script>
