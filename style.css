@@ -372,6 +372,30 @@ h1 {
   border-radius: 6px;
 }
 
+/* Homepage hero adjustments: use natural image sizing (restore to original behavior) */
+.home-hero .story-image {
+  max-width: 900px;
+  width: 100%;
+  height: auto; /* show full image without forcing viewport cropping */
+  margin: 2rem auto; /* keep some breathing room */
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: block;
+}
+
+/* New: smaller variant for the homepage hero when we want a compact image placed after the text */
+.home-hero .home-small,
+.story-image.home-small {
+  /* Increase the homepage image: larger than before but still not full-width.
+     Responsive: min 260px, ideal 44% of container, max 520px. */
+  width: clamp(260px, 44%, 520px);
+  height: auto;
+  margin: 1.75rem auto 0; /* slightly more breathing room above */
+  border-radius: 6px;
+  box-shadow: none;
+  display: block;
+}
+
 /* Travel page styles */
 .hotel-section {
   max-width: 1200px;
@@ -559,9 +583,24 @@ h1 {
   display: block;
 }
 
+/* New: smaller variant for the homepage hero when we want a compact image placed after the text */
+.home-hero .home-small,
+.story-image.home-small {
+  /* Increase the homepage image: larger than before but still not full-width.
+     Responsive: min 260px, ideal 44% of container, max 520px. */
+  width: clamp(260px, 44%, 520px);
+  height: auto;
+  margin: 1.75rem auto 0; /* slightly more breathing room above */
+  border-radius: 6px;
+  box-shadow: none;
+  display: block;
+}
+
 /* Content that appears below the hero on the home page */
+.home-main .below-hero,
 .below-hero {
-  margin-top: 1.5rem;
+  /* increase top gap so there's more space between the hero names and the date */
+  margin-top: clamp(2rem, 6vw, 4rem);
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -759,23 +798,28 @@ h1 {
   position: relative;
   top: clamp(8px, 1.6vh, 14px);
   box-sizing: border-box;
+
+  /* HOME-PAGE ONLY: use the body font and homepage primary color so this doesn't affect other pages */
+  font-family: var(--font-body);
+  color: var(--primary-color-dark);
 }
 
+/* HOME-PAGE ONLY: make the individual name lines match the event date styling but slightly larger */
 .home-main .hero-names .name {
   display: block;
-  /* explicit responsive sizing for the names */
-  font-size: clamp(2.8rem, 5.2vw + 0.6rem, 4.2rem);
+  /* slightly larger than the event-date (2.8rem) while staying responsive */
+  font-size: clamp(3.2rem, 5vw + 0.6rem, 4.2rem);
   line-height: 1.03;
-  font-weight: 600;
+  font-weight: 300; /* match the light weight of the event-date */
   margin: 0; /* reset any individual margins so block spacing is controlled by hero-gap */
 }
 
+/* HOME-PAGE ONLY: style the 'and' line to visually sit between names */
 .home-main .hero-names .and {
   display: block;
-  /* make 'and' slightly larger but still smaller than the names */
-  font-size: clamp(1.6rem, 3.2vw + 0.2rem, 2.4rem); /* bumped up for a bit more presence */
+  font-size: clamp(1.6rem, 3.2vw + 0.2rem, 2.4rem);
   opacity: 0.9;
-  font-weight: 400;
+  font-weight: 300; /* match the event-date weight */
   margin: 0; /* keep spacing consistent via gap */
 }
 
