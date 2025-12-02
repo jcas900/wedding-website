@@ -18,52 +18,43 @@ fetch("nav.html")
         link.classList.remove("active");
       }
     });
+
+    // Initialize mobile nav toggle behavior after nav content is present
+    initMobileNav();
   });
 
-// Navigation toggle for all screen sizes
-document.addEventListener("DOMContentLoaded", () => {
+function initMobileNav() {
   const toggleBtn = document.querySelector(".menu-toggle");
   const nav = document.querySelector("nav");
   const mobileNavContent = document.querySelector('.mobile-nav-content');
 
-  // Set initial state (menu closed)
-  nav.classList.remove("active");
+  if (!toggleBtn || !nav) return;
+
+  // Ensure the menu starts closed
+  nav.classList.remove('active');
   document.body.classList.remove('nav-active');
+  toggleBtn.textContent = '\u2630'; // hamburger
 
-  // preserve scroll position when opening menu
-  let savedScrollY = 0;
-
+  // Simple open/close functions that rely on CSS overlay (no body fixed positioning)
   function openMenu() {
-    // save scroll position
-    savedScrollY = window.scrollY || window.pageYOffset || 0;
-    // prevent background from scrolling: fix body and offset top so page doesn't jump
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${savedScrollY}px`;
-    document.body.classList.add('nav-active');
-
-    // show nav
     nav.classList.add('active');
-    // ensure nav scroll starts at top
-    try { nav.scrollTop = 0; } catch(e) {}
+    document.body.classList.add('nav-active');
+    // reset nav scroll to top when opening
+    try { nav.scrollTop = 0; } catch (e) {}
     if (mobileNavContent) try { mobileNavContent.scrollTop = 0; } catch(e) {}
-
-    toggleBtn.textContent = '×';
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    toggleBtn.textContent = '\u00d7'; // ×
   }
 
   function closeMenu() {
-    // hide nav
     nav.classList.remove('active');
     document.body.classList.remove('nav-active');
-
-    // restore body scroll position
-    document.body.style.position = '';
-    document.body.style.top = '';
-    window.scrollTo(0, savedScrollY);
-
-    toggleBtn.textContent = '☰';
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.textContent = '\u2630';
   }
 
-  toggleBtn.addEventListener("click", () => {
+  toggleBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
     if (nav.classList.contains('active')) {
       closeMenu();
     } else {
@@ -71,13 +62,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!nav.contains(e.target) && !toggleBtn.contains(e.target) && nav.classList.contains("active")) {
+  // Close menu when clicking a nav link (improves UX on mobile)
+  nav.addEventListener('click', function (e) {
+    const target = e.target;
+    if (target.tagName === 'A') {
       closeMenu();
     }
   });
-});
+
+  // Close menu when clicking outside the nav content (but only when open)
+  document.addEventListener('click', function (e) {
+    if (!nav.classList.contains('active')) return;
+    // if click is outside nav (shouldn't happen often because nav is full-screen overlay), close
+    if (!nav.contains(e.target) && !toggleBtn.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // Keyboard accessibility: close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('active')) {
+      closeMenu();
+    }
+  });
+}
 
 // Blur registry buttons on pageshow/load/popstate to prevent sticky hover/fill when returning via back nav
 (function() {
