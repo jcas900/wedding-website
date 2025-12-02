@@ -417,12 +417,12 @@ h3 {
 }
 
 .transportation-info {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  color: var(--text-color);
+  font-family: var(--font-body); /* match intro paragraph font */
+  font-size: 1.25rem; /* match .intro .intro-location size */
+  color: var(--text-color); /* match intro paragraph color */
   line-height: 1.6;
   margin-top: 2rem;
-  font-style: italic;
+  font-style: normal; /* keep non-italic */
 }
 
 .book-hotel-button {
