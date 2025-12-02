@@ -287,6 +287,36 @@ body {
   padding-top: 120px; /* restore original top padding so other pages keep correct spacing */
 }
 
+/* Homepage banner: full-width image directly under the nav */
+.home-page .homepage-banner {
+  width: 100vw; /* span the full viewport width */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw; /* reset centering to allow truly full-bleed image */
+  margin-right: -50vw;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.home-page .homepage-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* make the banner taller so the photo isn't overly cropped; keep reasonable bounds */
+  min-height: 280px;
+  max-height: 65vh; /* allow the banner to be taller on large screens to show more of the photo */
+  object-fit: cover;
+}
+
+/* Move the page content below the banner on the homepage specifically */
+.home-page .content-wrapper {
+  padding-top: 0; /* we'll control spacing via the banner height */
+  margin-top: 0;
+}
+.home-page main {
+  margin-top: 0.5rem; /* subtle reduction so content sits a bit closer to banner */
+}
+
 body.nav-active .content-wrapper {
   /* Removed margin-left to prevent content shifting */
   position: relative;
@@ -791,9 +821,11 @@ h1 {
   justify-content: center;
   gap: 0.5rem;
   margin: 0 auto 1rem;
-  --hero-gap: clamp(1rem, 4vh, 2.4rem); /* split the difference so hero sits slightly lower */
+  /* slightly tighten the top gap so the names sit a bit higher under the banner */
+  --hero-gap: clamp(0.6rem, 3vh, 1.6rem);
   margin-top: var(--hero-gap);
-  margin-bottom: var(--hero-gap);
+  /* increase bottom spacing specifically so the date sits further below the names */
+  margin-bottom: clamp(3rem, 8vw, 5rem);
   /* move names down visually without affecting document flow (image and below content stay in place) */
   position: relative;
   top: clamp(8px, 1.6vh, 14px);
@@ -831,5 +863,5 @@ h1 {
 
 /* Homepage-specific vertical adjustment so only the home page appears slightly higher */
 .home-main {
-  margin-top: -50px; /* counter the global top padding only for homepage */
+  margin-top: 0; /* ensure homepage content sits below the full-width banner */
 }
