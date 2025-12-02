@@ -27,6 +27,25 @@ body {
   letter-spacing: 0.3px;
 }
 
+/* Page-scoped centering to apply only to pages that include body.centered-page */
+.centered-page main,
+.centered-page .intro,
+.centered-page .hotel-section,
+.centered-page .flight-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.centered-page .book-hotel-button,
+.centered-page .airports,
+.centered-page .transportation-info,
+.centered-page .hotel-address,
+.centered-page .match-intro-location {
+  align-self: center;
+}
+
 /* Mobile Navigation */
 @media (max-width: 768px) {
   /* make nav a full-screen, opaque overlay so nothing from behind shows through */
@@ -248,6 +267,14 @@ body {
   text-decoration: underline;
 }
 
+.mobile-nav-content a:first-child {
+  margin-top: calc(var(--spacing) * 4);
+}
+
+.mobile-nav-content a:hover {
+  text-decoration: underline;
+}
+
 /* Content layout */
 .content-wrapper {
   width: 100%;
@@ -339,6 +366,9 @@ h2 {
 
 h3 {
   font-size: 1.75rem;
+  display: flex;
+  flex-direction: column; /* stack children vertically */
+  align-items: center; /* center children horizontally */
 }
 
 /* Travel page styles */
@@ -352,34 +382,68 @@ h3 {
 .section-icon {
   font-size: 3.2rem; /* increased size to be more prominent */
   color: var(--primary-color); /* match RSVP button color */
-  margin-bottom: 0.75rem;
+  margin-bottom: 0; /* reset; spacing handled by container gap for consistency */
   opacity: 0.95;
   display: flex; /* center the icon horizontally and vertically */
   justify-content: center;
   align-items: center;
 }
 
-/* Increase the gap between the icon/logo and the 'Hotel' heading specifically for the hotel section */
-.hotel-section .section-icon {
-  margin-bottom: 1.6rem; /* larger gap to push the heading down */
+/* Ensure hotel and flight blocks are fully center-aligned */
+.hotel-section,
+.flight-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* stack children vertically */
+  align-items: center; /* center children horizontally */
+  gap: 0.75rem; /* consistent spacing between icon and heading */
 }
 
-@media (max-width: 480px) {
-  .hotel-section .section-icon {
-    margin-bottom: 0.9rem; /* reduce gap on very small screens */
-  }
+/* Reduce the flight section gap to move the heading and paragraph closer to the icon */
+.flight-section {
+  gap: 1rem; /* split the difference between 0.5rem (too close) and previous 2rem */
+  margin: 0.75rem auto 2rem; /* reduced top margin to move the block up closer to the hotel section */
+}
+
+/* Remove extra top margin for airport-info so it sits closer to the heading but keep a little breathing room */
+.flight-section .airport-info {
+  margin-top: 0.75rem; /* nudge the paragraph down a little more */
+}
+
+/* Keep headings on travel page visually consistent */
+.flight-section h2,
+.hotel-section h2 {
+  margin-top: 0;
+}
+
+.hotel-info,
+.airport-info {
+  text-align: center; /* center block-level children and inline elements (buttons, links) */
+  width: 100%;
+  max-width: 820px; /* constrain width like other content blocks */
+  box-sizing: border-box;
+  margin: 0 auto; /* ensure the info container itself is centered */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center the inner elements (headings, paragraphs, buttons) */
 }
 
 .hotel-info {
-  margin-top: 0; /* remove extra gap so spacing is controlled by heading/name margins */
+  /* Use body type and light weight for hotel info so address/phone/transportation are not bold */
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
 }
 
-.hotel-name {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: var(--primary-color);
+/* Ensure hotel/address/transportation text are light weight and use body font */
+.hotel-info,
+.hotel-info .hotel-address,
+.hotel-info .transportation-info,
+.hotel-info a {
+  font-family: var(--font-body);
+  font-weight: 300;
 }
 
 .hotel-name.match-event-date {
@@ -449,13 +513,18 @@ h3 {
 /* Flight section styles */
 .flight-section {
   max-width: 1200px;
-  margin: 3rem auto 2rem;
+  margin: 1.25rem auto 2rem;
   padding: 2rem;
   text-align: center;
 }
 
+/* Final tweak: nudge the flight block slightly upward so it sits closer to the hotel "Book Here" button */
+.flight-section {
+  margin-top: 0.5rem; /* small upward nudge */
+}
+
 .airport-info {
-  margin-top: 1.5rem;
+  margin-top: 0.75rem; /* nudge the paragraph down a little more */
 }
 
 .airports {
@@ -612,6 +681,7 @@ h3 {
   text-align: center;
   text-decoration: none;
   border-radius: 2px;
+
   /* Ensure all buttons have the same height regardless of content wrapping */
   min-height: 6rem;
 }
@@ -703,4 +773,10 @@ h3 {
   opacity: 0.9;
   font-weight: 400;
   margin: 0; /* keep spacing consistent via gap */
+}
+
+/* Make flight paragraph match the hotel transportation paragraph spacing */
+.flight-section .airports.match-intro-location {
+  font-size: 1.25rem; /* match .transportation-info */
+  line-height: 1.6;    /* match .transportation-info */
 }
