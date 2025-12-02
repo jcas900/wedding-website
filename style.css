@@ -488,6 +488,13 @@ h3 {
   letter-spacing: normal;
 }
 
+/* Match homepage 'Quaker Ridge Golf Club' typography for travel intro paragraph */
+.intro .intro-location {
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  color: var(--text-color);
+}
+
 /* Ensure on smaller screens the hero still fits without forcing scroll */
 @media (max-width: 768px) {
   .home-hero .story-image {
