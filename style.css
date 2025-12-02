@@ -349,14 +349,17 @@ h3 {
 }
 
 .section-icon {
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-  opacity: 0.85;
+  font-size: 3.2rem; /* increased size to be more prominent */
+  color: var(--primary-color); /* match RSVP button color */
+  margin-bottom: 0.75rem;
+  opacity: 0.95;
+  display: flex; /* center the icon horizontally and vertically */
+  justify-content: center;
+  align-items: center;
 }
 
 .hotel-info {
-  margin-top: 1.5rem;
+  margin-top: 0.25rem;
 }
 
 .hotel-name {
@@ -365,6 +368,16 @@ h3 {
   font-weight: 500;
   margin-bottom: 0.5rem;
   color: var(--primary-color);
+}
+
+.hotel-name.match-event-date {
+  font-size: 2.2rem; /* slightly smaller on desktop */
+}
+
+@media (max-width: 768px) {
+  .hotel-name.match-event-date {
+    font-size: 1.9rem; /* scale down on mobile to match page flow */
+  }
 }
 
 .hotel-address {
@@ -478,6 +491,28 @@ h3 {
   color: var(--primary-color-dark);
 }
 
+/* Utility: allow other elements (like the hotel name) to match the homepage event date styling */
+.match-event-date {
+  font-size: 2.8rem;
+  font-family: var(--font-body);
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: normal;
+  line-height: 1.2;
+  color: var(--primary-color-dark);
+}
+
+/* Bold variant for page titles: same sizing/color but bold and pushed down from the nav */
+.match-event-date--bold {
+  font-size: 2.8rem;
+  font-family: var(--font-body);
+  margin: 2.5rem 0 0; /* push down from the nav */
+  font-weight: 300; /* use light weight to undo bolding while keeping spacing */
+  letter-spacing: normal;
+  line-height: 1.2;
+  color: var(--primary-color-dark);
+}
+
 .below-hero .event-location {
   font-size: 1.4rem; /* slightly smaller than date */
   margin: 0;
@@ -493,6 +528,16 @@ h3 {
   font-family: var(--font-body);
   font-size: 1.25rem;
   color: var(--text-color);
+}
+
+/* Utility: allow other elements (like section headings) to match the intro paragraph styling */
+.match-intro-location {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  color: var(--text-color);
+  font-weight: 300; /* match intro paragraph weight */
+  line-height: 1.6; /* match paragraph vertical rhythm */
+  margin: 0; /* remove default heading margin so spacing matches paragraph if needed */
 }
 
 /* Intro body text should match the intro-location sizing for consistency */
@@ -594,12 +639,12 @@ h3 {
     margin-left: 0;
     padding-top: 80px;
   }
-  
+
   main {
     max-width: 100%;
     width: 95%;
   }
-  
+
   h1 {
     font-size: 3.5rem;
   }
@@ -613,7 +658,7 @@ h3 {
   p[style*="font-size: 2.5rem"] {
     font-size: 2rem !important;
   }
-  
+
   p[style*="font-size: 1.5rem"] {
     font-size: 1.2rem !important;
   }
