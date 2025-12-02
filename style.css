@@ -672,3 +672,35 @@ h3 {
   line-height: 1.2;
   letter-spacing: normal;
 }
+
+/* Make the hero names stack vertically and style the "and" as slightly smaller */
+.home-main .hero-names {
+  display: flex;
+  flex-direction: column; /* stack names on separate lines */
+  align-items: center; /* center the lines horizontally */
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto 1rem;
+  --hero-gap: clamp(1.2rem, 5vh, 3rem);
+  margin-top: var(--hero-gap);
+  margin-bottom: var(--hero-gap);
+  box-sizing: border-box;
+}
+
+.home-main .hero-names .name {
+  display: block;
+  /* explicit responsive sizing for the names */
+  font-size: clamp(2.8rem, 5.2vw + 0.6rem, 4.2rem);
+  line-height: 1.03;
+  font-weight: 600;
+  margin: 0; /* reset any individual margins so block spacing is controlled by hero-gap */
+}
+
+.home-main .hero-names .and {
+  display: block;
+  /* make 'and' slightly larger but still smaller than the names */
+  font-size: clamp(1.6rem, 3.2vw + 0.2rem, 2.4rem); /* bumped up for a bit more presence */
+  opacity: 0.9;
+  font-weight: 400;
+  margin: 0; /* keep spacing consistent via gap */
+}
