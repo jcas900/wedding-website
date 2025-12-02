@@ -366,7 +366,7 @@ h1 {
 .home-hero img {
   display: block;
   width: 100%;
-  max-width: clamp(260px, 46vw, 520px); /* keeps image smaller on large screens, larger on small screens */
+  max-width: clamp(220px, 38vw, 460px); /* reduced: smaller on large screens and slightly smaller minimum */
   height: auto;
   margin: 0 auto; /* center the image */
   border-radius: 6px;
