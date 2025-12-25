@@ -107,7 +107,8 @@ body {
     color: var(--primary-color);
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: 2rem;
+    /* size mobile nav links to match .below-hero .event-location (0.35 × hero name size) */
+    font-size: calc(var(--hero-name-size) * 0.35);
     letter-spacing: 0.5px;
     text-align: center;
     padding: 0.6rem 0.4rem;
@@ -212,7 +213,8 @@ body {
     color: var(--primary-color);
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: 1.15rem; /* use a readable headline size for nav links */
+    /* size desktop nav links to match .below-hero .event-location (0.35 × hero name size) */
+    font-size: calc(var(--hero-name-size) * 0.35);
     letter-spacing: 0.5px;
     transition: all 0.2s ease;
     display: inline-block;
