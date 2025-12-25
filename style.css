@@ -57,15 +57,19 @@ body {
   /* make nav a full-screen, opaque overlay so nothing from behind shows through */
   nav {
     position: fixed;
-    inset: 0; /* top:0; right:0; bottom:0; left:0 */
-    /* Avoid 100vw which can create horizontal scrollbars; prefer full inset and 100% width */
+    inset: 0; /* top:0; right:0; bottom:0; left:0 - ensures full bleed including under dynamic island */
     width: 100%;
-    /* Prefer modern small/dynamic viewport units when available, then fall back to a JS-set --vh value */
+    /* prefer modern dynamic viewport units; fall back to JS-set --vh for older browsers */
     height: 100svh;
     height: 100dvh;
     height: calc(var(--vh, 1vh) * 100);
     background-color: var(--nav-bg);
-    padding: calc(var(--spacing) * 2) var(--spacing);
+    /* Add safe-area padding so content doesn't sit underneath the dynamic island / notch.
+       Use env() where available and constant() as older iOS fallback. */
+    padding-top: calc(var(--spacing) * 2 + env(safe-area-inset-top, constant(safe-area-inset-top)));
+    padding-bottom: calc(var(--spacing) * 2 + env(safe-area-inset-bottom, constant(safe-area-inset-bottom)));
+    padding-left: calc(var(--spacing) + env(safe-area-inset-left, constant(safe-area-inset-left)));
+    padding-right: calc(var(--spacing) + env(safe-area-inset-right, constant(safe-area-inset-right)));
     box-shadow: 0 6px 20px rgba(0,0,0,0.12);
     z-index: 2000; /* above toggle */
     transform: translateX(-100%);
@@ -73,6 +77,8 @@ body {
     overflow-y: auto; /* allow nav content to scroll independently */
     -webkit-overflow-scrolling: touch;
     visibility: hidden;
+    /* ensure the overlay paints to the very edge of the viewport on iOS Safari */
+    -webkit-app-region: no-drag;
   }
 
   /* show nav when active */
@@ -96,8 +102,8 @@ body {
     align-items: center; /* center links horizontally */
     justify-content: center; /* center items vertically inside the overlay */
     /* prefer modern units, then dynamic units, then the JS-calculated --vh fallback */
-    min-height: calc(100svh - (var(--spacing) * 4));
-    min-height: calc(100dvh - (var(--spacing) * 4));
+    min-height: calc(100svh - (var(--spacing) * 4) - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0));
+    min-height: calc(100dvh - (var(--spacing) * 4) - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0));
     min-height: calc((var(--vh, 1vh) * 100) - (var(--spacing) * 4));
     box-sizing: border-box;
     gap: 1rem;
@@ -123,7 +129,7 @@ body {
     text-align: center;
     padding: 0.6rem 0.4rem;
     width: 100%;
-    max-width: var(--nav-content-width);
+    max-width: calc(var(--nav-content-width) - env(safe-area-inset-left, 0) - env(safe-area-inset-right, 0));
     box-sizing: border-box;
     background: transparent;
   }
