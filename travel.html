@@ -8,16 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="script.js" defer></script>
 </head>
-<body class="centered-page">
+<body class="centered-page travel-page">
     <div class="menu-toggle">☰</div>
     <nav></nav>
 
     <div class="content-wrapper">
         <main>
-            <h1>Travel and Accommodations</h1>
-
             <div class="intro">
-                <p class="intro-location">Our wedding will take place at Quaker Ridge Golf Club in Scarsdale, NY, approximately 40 minutes north of Manhattan.  Busses will be available to/from the wedding for anyone who does not wish to arrange their own transportation.  More details to follow.</p>
+                <p class="intro-location">Our wedding will take place at Quaker Ridge Golf Club in Scarsdale, NY, approximately 40 minutes north of Manhattan.</p>
             </div>
 
             <section class="hotel-section">
@@ -27,11 +25,10 @@
                 <h2 class="match-intro-location">Hotel</h2>
                 <div class="hotel-info">
                     <h3 class="hotel-name match-event-date">Loews Regency New York</h3>
-                    <p class="hotel-address">
-                        540 Park Ave, New York, NY 10065 | <a href="tel:2127594100">(212) 759-4100</a>
-                    </p>
-                    <p class="transportation-info">We have reserved a block of rooms from 10/16-10/18. Please book before September 16 using the below link.</p>
-                    <a href="https://www.loewshotels.com/regency-hotel/shapiro-castleman-wedding-room-block" class="book-hotel-button" target="_blank">Book Here</a>
+                    <p class="hotel-address">540 Park Ave, New York, NY 10065</p>
+                    <p class="hotel-phone"><a href="tel:2127594100">(212) 759-4100</a></p>
+                    <p class="transportation-info">We have reserved a block of rooms from 10/16-10/18. Please book before September 16 using the link below.</p>
+                    <button class="book-hotel-button" type="button" data-href="https://www.loewshotels.com/regency-hotel/shapiro-castleman-wedding-room-block" onclick="window.open(this.dataset.href, '_blank')" aria-label="Book hotel">Book Here</button>
                 </div>
             </section>
 
@@ -41,7 +38,7 @@
                 </div>
                 <h2 class="match-intro-location">Transportation</h2>
                 <div class="airport-info hotel-info">
-                    <p class="airports match-intro-location">Additional details on transportation to follow.</p>
+                    <p class="airports match-intro-location">Busses will be available to/from the wedding for anyone who does not wish to arrange their own transportation. More details to follow.</p>
                 </div>
             </section>
         </main>
