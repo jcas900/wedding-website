@@ -58,9 +58,12 @@ body {
   nav {
     position: fixed;
     inset: 0; /* top:0; right:0; bottom:0; left:0 */
-    width: 100vw;
+    /* Avoid 100vw which can create horizontal scrollbars; prefer full inset and 100% width */
+    width: 100%;
+    /* Prefer modern small/dynamic viewport units when available, then fall back to a JS-set --vh value */
+    height: 100svh;
     height: 100dvh;
-    min-height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     background-color: var(--nav-bg);
     padding: calc(var(--spacing) * 2) var(--spacing);
     box-shadow: 0 6px 20px rgba(0,0,0,0.12);
@@ -92,7 +95,10 @@ body {
     flex-direction: column;
     align-items: center; /* center links horizontally */
     justify-content: center; /* center items vertically inside the overlay */
+    /* prefer modern units, then dynamic units, then the JS-calculated --vh fallback */
+    min-height: calc(100svh - (var(--spacing) * 4));
     min-height: calc(100dvh - (var(--spacing) * 4));
+    min-height: calc((var(--vh, 1vh) * 100) - (var(--spacing) * 4));
     box-sizing: border-box;
     gap: 1rem;
     padding-bottom: 2rem; /* safe space for system UI */
