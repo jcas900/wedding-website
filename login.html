@@ -15,29 +15,125 @@
         .login-form {
             margin-top: 20px;
         }
+        .sr-only {
+            position: absolute !important;
+            height: 1px; width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap; /* added line to prevent wrapping */
+        }
         .login-form input {
             padding: 10px;
             width: 200px;
             margin-bottom: 10px;
+            /* use the site heading/body font so the input matches the hero typography */
+            font-family: var(--font-body);
+            font-weight: 300;
+            /* scale input size relative to the hero name so sizing stays consistent */
+            font-size: calc(var(--hero-name-size) * 0.35);
         }
         .login-form button {
             padding: 10px 20px;
             cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: calc(var(--hero-name-size) * 0.35);
+            color: var(--primary-color-dark);
+            background: transparent;
+            border: 1px solid rgba(0,0,0,0.08);
         }
         .error-message {
             color: red;
             margin-top: 10px;
             display: none;
+            font-family: var(--font-body);
+            font-weight: 300;
+        }
+
+        /* Login page: use the same hero-name styling but broken into separate lines
+           to match the homepage hero. Scoped for the login page to avoid affecting
+           other pages. */
+        .login-container .hero-names {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            margin: 0 0 0.5rem 0;
+            box-sizing: border-box;
+            /* Use the same body font and primary color as the homepage hero */
+            font-family: var(--font-body);
+            color: var(--primary-color-dark);
+            line-height: 1.03;
+            letter-spacing: 0.3px;
+        }
+
+        .login-container .hero-names .name {
+            display: block;
+            font-size: var(--hero-name-size);
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .login-container .hero-names .and {
+            display: block;
+            font-size: var(--hero-name-size);
+            font-weight: 300;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Reuse the "book" button appearance for the Enter Site button so it matches site-wide */
+        .login-form .book-hotel-button {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: clamp(1.05rem, calc(var(--hero-name-size) * 0.42), 1.4rem);
+            padding: 1.0rem 1.2rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            background-color: white;
+            border-radius: 6px;
+            display: inline-block;
+            box-sizing: border-box;
+            margin: 0.9rem auto 0;
+            text-align: center;
+            border: 2px solid var(--primary-color);
+            box-shadow: none;
+            transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            line-height: 1.2;
+            letter-spacing: 0.6px;
+            cursor: pointer;
+        }
+
+        .login-form .book-hotel-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 6px rgba(57,83,115,0.10);
+        }
+
+        .login-form .book-hotel-button:hover,
+        .login-form .book-hotel-button:focus,
+        .login-form .book-hotel-button:active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(57,83,115,0.12);
+            border-color: var(--primary-color-dark);
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h1>Amanda & Jordan's Wedding</h1>
+        <h1 class="hero-names">
+            <span class="name">Amanda</span>
+            <span class="and">&amp;</span>
+            <span class="name">Jordan's</span>
+            <span class="name">Wedding</span>
+        </h1>
         <div class="login-form">
+            <label for="password" class="sr-only">Password</label>
             <input type="password" id="password" placeholder="Enter Password" />
             <br>
-            <button onclick="checkPassword()">Enter Site</button>
+            <button class="book-hotel-button" onclick="checkPassword()">Enter Site</button>
             <p id="error-message" class="error-message">Incorrect password.</p>
         </div>
     </div>

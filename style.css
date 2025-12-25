@@ -439,7 +439,10 @@ h1 {
   background-color: white; /* white fill */
   border-radius: 6px;
   display: block; /* centered block buttons */
-  width: clamp(320px, 72%, 640px); /* larger min and max */
+  /* Keep buttons fluid but never exceed a comfortable max width. Using min()/max() ensures
+     the buttons don't force a horizontal scroll on very narrow viewports while still
+     allowing a comfortable reading measure on larger screens. */
+  width: min(92%, 640px);
   max-width: 100%;
   margin: 1.8rem auto;
   text-align: center;
@@ -930,4 +933,3 @@ h1 {
     box-sizing: border-box;
   }
 }
-
