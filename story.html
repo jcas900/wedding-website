@@ -11,10 +11,21 @@
   <button class="menu-toggle">☰</button>
   <div class="content-wrapper">
     <main>
-      <img src="images/our-story.jpg" alt="Our special moment" class="story-image">
-      <p class="story-caption">... the rest is history</p>
+      <!-- Replaced previous story hero and caption: gallery now replaces the existing content -->
+
+      <!-- Gallery section: populated by script.new.js -->
+      <section id="home-gallery" class="gallery-section" aria-label="Gallery">
+        <div id="gallery-grid" class="gallery-grid">
+          <figure class="gallery-item featured">
+            <img src="images/gallery/our-story.jpg" alt="Amanda and Jordan — our story" loading="lazy">
+          </figure>
+          <!-- Other images appended by script.new.js -->
+        </div>
+      </section>
+
     </main>
   </div>
   <script src="script.js"></script>
+  <script src="script.new.js"></script>
 </body>
 </html>
