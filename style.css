@@ -594,6 +594,31 @@ h1 {
   padding-right: 0;
 }
 
+/* Travel page: slightly narrower content on desktop to increase side margins */
+@media (min-width: 769px) {
+  body.travel-page main {
+    /* make the main column a bit narrower so the page is more compact while keeping key phrases on one line */
+    /* narrower (64%) to compact the page; keep moderate padding */
+    width: 64%;
+    max-width: 900px; /* cap on very wide screens */
+    padding-left: var(--spacing);
+    padding-right: var(--spacing);
+    box-sizing: border-box;
+  }
+
+  /* Ensure the inner travel blocks match the main column width (don't keep them constrained to nav-content-width) */
+  body.travel-page .hotel-info,
+  body.travel-page .airport-info,
+  body.travel-page .registry-section {
+    max-width: none;   /* remove tight cap */
+    width: 100%;       /* fill the narrowed main column */
+    box-sizing: border-box;
+    padding-left: 0;   /* keep inner padding consistent with main */
+    padding-right: 0;
+    margin: 0 auto;
+  }
+}
+
 /* Ensure the hotel and airport info blocks align with the narrower main column */
 .travel-page .hotel-info,
 .travel-page .airport-info,
@@ -606,12 +631,12 @@ h1 {
 @media (min-width: 900px) {
   /* On large screens, allow a slightly wider column for better balance */
   .travel-page main {
-    /* keep the same shared width on large screens (variable can be changed globally if needed) */
-    max-width: var(--nav-content-width);
+    /* override the earlier narrow nav-content cap so the main column can expand with our desktop rule */
+    max-width: 1100px;
   }
   .travel-page .hotel-info,
   .travel-page .airport-info {
-    max-width: var(--nav-content-width);
+    max-width: 1100px;
   }
 }
 
@@ -681,8 +706,8 @@ h1 {
 
 /* Make flight paragraph match the hotel transportation paragraph spacing */
 .flight-section .airports.match-intro-location {
-  font-size: 1.25rem; /* match .transportation-info */
-  line-height: 1.6;    /* match .transportation-info */
+  font-size: inherit; /* inherit the .travel-page base size (0.35× hero) */
+  line-height: 1.6;   /* keep comfortable reading line-height */
 }
 
 /* Homepage-specific vertical adjustment so only the home page appears slightly higher */
@@ -938,4 +963,10 @@ h1 {
   .gallery-item img { height: 344px; /* 275px * 1.25 = 343.75 ≈ 344px */ }
   .gallery-item.featured { grid-column: auto; grid-row: auto; }
   .gallery-item.featured img { height: 344px; object-fit: contain; }
+}
+
+/* Utility class to prevent short date ranges or names from wrapping on travel page */
+.travel-page .nowrap {
+  white-space: nowrap;
+  font-size: 0.95em; /* slightly reduce size so short ranges fit on one line in narrower column */
 }
