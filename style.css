@@ -990,3 +990,10 @@ h1 {
     align-self: center;
   }
 }
+
+/* Page-specific override: ensure schedule page intro copies travel-page scaling (0.35× hero) */
+.schedule-page .intro .intro-location {
+  font-size: calc(var(--hero-name-size) * 0.35);
+  font-family: var(--font-body);
+  font-weight: 300;
+}
