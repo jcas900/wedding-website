@@ -51,7 +51,7 @@ fetch("nav.html")
     // with /nav.html so the mobile nav still functions when opened.
     const fallbackNav = `
       <!-- Mobile Navigation (fallback) -->
-      <div class="mobile-nav-content">
+      <div class="mobile-nav-content>
         <div class="nav-header">
           <div class="nav-names">Amanda & Jordan</div>
           <div class="nav-date">October 17, 2026</div>
@@ -179,3 +179,52 @@ function initMobileNav() {
     setTimeout(clearRegistryButtonFocus, 0);
   });
 })();
+
+// Keep the Transportation paragraph widths in sync: copy the hotel's transportation paragraph
+// computed width to the flight-section transportation paragraph so they match exactly.
+function syncTransportationWidths() {
+  try {
+    var hotelP = document.querySelector('.hotel-section .transportation-info');
+    var flightP = document.querySelector('.flight-section .transportation-info');
+    if (!hotelP || !flightP) return;
+
+    // On very small screens allow the paragraphs to be fluid (matches CSS mobile behavior)
+    if (window.matchMedia('(max-width: 420px)').matches) {
+      flightP.style.width = '';
+      flightP.style.maxWidth = '';
+      flightP.style.display = '';
+      flightP.style.margin = '';
+      return;
+    }
+
+    // Use the hotel's rendered width (including wrapping) to set the flight paragraph width.
+    var hotelRect = hotelP.getBoundingClientRect();
+    var widthPx = Math.round(hotelRect.width);
+
+    // Apply width to flight paragraph and center it to match visual alignment
+    flightP.style.display = 'block';
+    flightP.style.width = widthPx + 'px';
+    flightP.style.margin = '0.6rem auto 0';
+  } catch (e) {
+    // don't break the page if something goes wrong
+    console.warn('syncTransportationWidths failed', e);
+  }
+}
+
+// Run once after nav loads/content is ready and on resize so the measured width stays correct
+window.addEventListener('load', function () {
+  setTimeout(syncTransportationWidths, 50);
+});
+window.addEventListener('resize', function () {
+  // debounce a bit to avoid thrashing on continuous resize
+  if (window._syncTransportTimer) clearTimeout(window._syncTransportTimer);
+  window._syncTransportTimer = setTimeout(function () {
+    syncTransportationWidths();
+  }, 120);
+});
+
+// Also run after nav is injected (nav fetch callback calls initMobileNav and returns) — run on DOMContentLoaded to be safe
+window.addEventListener('DOMContentLoaded', function () {
+  setTimeout(syncTransportationWidths, 60);
+});
+

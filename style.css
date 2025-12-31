@@ -970,3 +970,23 @@ h1 {
   white-space: nowrap;
   font-size: 0.95em; /* slightly reduce size so short ranges fit on one line in narrower column */
 }
+
+/* Constrain the Transportation paragraph in the flight section so it matches the compact
+   reading measure used by the hotel info paragraph (keeps both blocks visually aligned). */
+.travel-page .flight-section .transportation-info {
+  max-width: none; /* allow it to fill the parent when necessary */
+  width: auto; /* shrink-to-fit so it matches the hotel paragraph width */
+  margin: 0.6rem 0 0; /* small top gap; keep vertical spacing */
+  box-sizing: border-box;
+  text-align: center; /* keep the paragraph centered within itself */
+  align-self: center; /* center the block within the flight-section flex column and shrink to content */
+}
+
+@media (max-width: 420px) {
+  .travel-page .flight-section .transportation-info {
+    width: 94%;
+    max-width: none;
+    margin-top: 0.6rem;
+    align-self: center;
+  }
+}
