@@ -17,11 +17,22 @@
       <section id="home-gallery" class="gallery-section" aria-label="Gallery">
         <div id="gallery-grid" class="gallery-grid">
           <figure class="gallery-item featured">
-            <img src="images/gallery/our-story.jpg" alt="Amanda and Jordan — our story" loading="lazy">
+            <img src="images/gallery/our-story.jpg" alt="Our first Hinge Conversation" data-caption="Our first Hinge Conversation" loading="lazy">
           </figure>
           <!-- Other images appended by script.new.js -->
         </div>
       </section>
+
+      <!-- Lightbox overlay (hidden by default) -->
+      <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Close (Esc)">&times;</button>
+        <button class="lightbox-prev" aria-label="Previous image">‹</button>
+        <div class="lightbox-content">
+          <img id="lightbox-image" src="" alt="" />
+          <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+        <button class="lightbox-next" aria-label="Next image">›</button>
+      </div>
 
     </main>
   </div>
