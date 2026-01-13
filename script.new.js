@@ -27,22 +27,22 @@
 
   // Map of filename -> visible caption (used in lightbox)
   var captions = {
-    'our-story.jpg': 'Our first Hinge Conversation',
-    'IMG_0320.jpg': 'An Icelandic Ice Bar',
-    'IMG_1814.jpg': "Fun at Henry and Sean's Wedding",
+    'our-story.jpg': 'Our first Hinge conversation',
+    'IMG_0320.jpg': 'An Icelandic ice bar',
+    'IMG_1814.jpg': "Wedding fun",
     'IMG_2091.jpg': 'Seattle Space Needle',
-    'IMG_2888.jpg': '"Go birds- Amanda"',
-    'IMG_3478.jpg': 'The Northern Lights in Tromsø',
-    'IMG_4040.jpg': 'Jamaica pt. 2',
+    'IMG_2888.jpg': '"Go birds – Amanda"',
+    'IMG_3478.jpg': 'The Northern Lights in Tromsø, Norway',
+    'IMG_4040.jpg': 'Jamaica',
     'IMG_4881.jpg': 'Seljalandsfoss',
-    'IMG_4965.jpg': "Fun at Matthew and Marissa's Wedding",
+    'IMG_4965.jpg': "Wedding fun part 2",
     'IMG_6680.jpg': 'Engaged!',
     'IMG_7319.jpg': 'Mt. Rainier',
-    'IMG_7458.jpg': 'Engagement Shoot',
-    'IMG_7567.jpg': 'Our Biggest Beef',
-    'IMG_8434.jpg': '"Go Giants- Jordan"',
+    'IMG_7458.jpg': 'Engagement photoshoot',
+    'IMG_7567.jpg': 'Our biggest rivalry',
+    'IMG_8434.jpg': '"Go Giants – Jordan"',
     'IMG_9210.jpg': 'Pickleball',
-    'IMG_9930.jpg': '"Go Phillies- Amanda and Jordan"'
+    'IMG_9930.jpg': '"Go Phillies – Amanda and Jordan"'
   };
 
   function friendlyAlt(filename) {
