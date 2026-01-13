@@ -34,7 +34,7 @@
     'IMG_2888.jpg': '"Go birds – Amanda"',
     'IMG_3478.jpg': 'The Northern Lights in Tromsø, Norway',
     'IMG_4040.jpg': 'Jamaica',
-    'IMG_4881.jpg': 'Seljalandsfoss',
+    'IMG_4881.jpg': 'Seljalandsfoss in Iceland',
     'IMG_4965.jpg': "Wedding fun part 2",
     'IMG_6680.jpg': 'Engaged!',
     'IMG_7319.jpg': 'Mt. Rainier',
