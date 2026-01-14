@@ -31,7 +31,7 @@
     'IMG_0320.jpg': 'An Icelandic ice bar',
     'IMG_1814.jpg': "Wedding fun",
     'IMG_2091.jpg': 'Seattle Space Needle',
-    'IMG_2888.jpg': '"Go Birds – Amanda"',
+    'IMG_2888.jpg': '"Go Birds" – Amanda',
     'IMG_3478.jpg': 'The Northern Lights in Tromsø, Norway',
     'IMG_4040.jpg': 'Jamaica',
     'IMG_4881.jpg': 'Seljalandsfoss in Iceland',
@@ -40,9 +40,9 @@
     'IMG_7319.jpg': 'Mt. Rainier',
     'IMG_7458.jpg': 'Engagement photoshoot',
     'IMG_7567.jpg': 'Our biggest rivalry',
-    'IMG_8434.jpg': '"Go Giants – Jordan"',
+    'IMG_8434.jpg': '"Go Giants" – Jordan',
     'IMG_9210.jpg': 'Pickleball',
-    'IMG_9930.jpg': '"Go Phillies – Amanda and Jordan"'
+    'IMG_9930.jpg': '"Go Phillies" – Amanda and Jordan'
   };
 
   function friendlyAlt(filename) {
