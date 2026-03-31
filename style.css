@@ -699,9 +699,12 @@ h1 {
   font-size: inherit;
 }
 
-/* Scale the section icons to match the heading size (0.5× hero) */
-.travel-page .section-icon {
+/* Scale the section icons to match the heading size (0.5× hero)
+   The icons are inside .section-icon so set their font-size accordingly. */
+.travel-page .section-icon,
+.travel-page .section-icon i {
   font-size: calc(var(--hero-name-size) * 0.5);
+  color: var(--primary-color);
 }
 
 /* Ensure specific travel text that previously used fixed sizes inherit the scaled base size unless explicitly overridden */
