@@ -120,7 +120,7 @@ body {
     background: transparent;
   }
 
-  .mobile-nav-content a:first-child { margin-top: 0.6rem; }
+  .mobile-nav-content a:first-child { margin-top: calc(var(--spacing) * 4); }
   .mobile-nav-content a:hover { text-decoration: underline; }
 
   /* Ensure desktop navigation and desktop-brand are hidden on mobile */
@@ -244,22 +244,6 @@ body {
   width: 100%;
   background-color: rgba(0,0,0,0.12);
   margin-bottom: calc(var(--spacing) * 0.6);
-}
-
-.mobile-nav-content a:first-child {
-  margin-top: calc(var(--spacing) * 4);
-}
-
-.mobile-nav-content a:hover {
-  text-decoration: underline;
-}
-
-.mobile-nav-content a:first-child {
-  margin-top: calc(var(--spacing) * 4);
-}
-
-.mobile-nav-content a:hover {
-  text-decoration: underline;
 }
 
 /* Content layout */
@@ -513,16 +497,6 @@ h1 {
   color: var(--primary-color-dark);
 }
 
-/* Bold variant for page titles: same sizing/color but bold and pushed down from the nav */
-.match-event-date--bold {
-  font-size: 2.8rem;
-  font-family: var(--font-body);
-  margin: 2.5rem 0 0; /* push down from the nav */
-  font-weight: 300; /* use light weight to undo bolding while keeping spacing */
-  letter-spacing: normal;
-  line-height: 1.2;
-  color: var(--primary-color-dark);
-}
 
 .below-hero .event-location {
   /* size event location relative to the hero name size (keeps consistent rhythm) */
@@ -550,17 +524,6 @@ h1 {
   font-weight: 300; /* match intro paragraph weight */
   line-height: 1.15; /* slightly tighter for compact spacing */
   margin: 0 0 var(--hotel-gap) 0; /* bottom gap controlled by variable */
-}
-
-/* Ensure the "Hotel" section heading has a bit more breathing room above the hotel name */
-.hotel-section .match-intro-location {
-  margin: 0 0 0.6rem 0; /* reduced gap so the hotel name/address sit closer to the heading */
-}
-
-@media (max-width: 480px) {
-  .hotel-section .match-intro-location {
-    margin: 0 0 0.4rem 0; /* slightly smaller gap on very small screens */
-  }
 }
 
 /* Ensure the "Hotel" section heading has a bit more breathing room above the hotel name */
@@ -736,12 +699,9 @@ h1 {
   font-size: inherit;
 }
 
-/* Scale the section icons to match the heading size (0.5× hero)
-   The icons are inside .section-icon so set their font-size accordingly. */
-.travel-page .section-icon,
-.travel-page .section-icon i {
+/* Scale the section icons to match the heading size (0.5× hero) */
+.travel-page .section-icon {
   font-size: calc(var(--hero-name-size) * 0.5);
-  color: var(--primary-color);
 }
 
 /* Ensure specific travel text that previously used fixed sizes inherit the scaled base size unless explicitly overridden */
@@ -925,11 +885,6 @@ h1 {
   margin: 2rem 0 3rem;
   width: 100%;
 }
-.gallery-title {
-  margin: 0 0 1rem;
-  font-size: 1.6rem;
-  color: var(--primary-color-dark);
-}
 /* Base: allow the grid to wrap on small screens but make tiles larger (+25%) */
 .gallery-grid {
   display: grid;
@@ -1074,4 +1029,111 @@ h1 {
   font-size: calc(var(--hero-name-size) * 0.35);
   font-family: var(--font-body);
   font-weight: 300;
+}
+
+/* Utility: visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Login page
+   ============================================================ */
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.login-form {
+  margin-top: 20px;
+}
+
+.login-form input {
+  padding: 10px;
+  width: 200px;
+  margin-bottom: 1.2rem;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: calc(var(--hero-name-size) * 0.35);
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  display: none;
+  font-family: var(--font-body);
+  font-weight: 300;
+}
+
+.login-container .hero-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0 0 0.5rem 0;
+  box-sizing: border-box;
+  font-family: var(--font-body);
+  color: var(--primary-color-dark);
+  line-height: 1.03;
+  letter-spacing: 0.3px;
+}
+
+.login-container .hero-names .name {
+  display: block;
+  font-size: var(--hero-name-size);
+  font-weight: 300;
+  margin: 0;
+}
+
+.login-container .hero-names .and {
+  display: block;
+  font-size: var(--hero-name-size);
+  font-weight: 300;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Enter Site button: matches the site-wide book-hotel-button appearance */
+.login-form .book-hotel-button {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(1.05rem, calc(var(--hero-name-size) * 0.42), 1.4rem);
+  padding: 1.0rem 1.2rem;
+  text-decoration: none;
+  color: var(--primary-color);
+  background-color: white;
+  border-radius: 6px;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0.9rem auto 0;
+  text-align: center;
+  border: 2px solid var(--primary-color);
+  box-shadow: none;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  line-height: 1.2;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+}
+
+.login-form .book-hotel-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 6px rgba(57,83,115,0.10);
+}
+
+.login-form .book-hotel-button:hover,
+.login-form .book-hotel-button:focus,
+.login-form .book-hotel-button:active {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(57,83,115,0.12);
+  border-color: var(--primary-color-dark);
 }

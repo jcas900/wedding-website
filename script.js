@@ -51,7 +51,7 @@ fetch("nav.html")
     // with /nav.html so the mobile nav still functions when opened.
     const fallbackNav = `
       <!-- Mobile Navigation (fallback) -->
-      <div class="mobile-nav-content>
+      <div class="mobile-nav-content">
         <div class="nav-header">
           <div class="nav-names">Amanda & Jordan</div>
           <div class="nav-date">October 17, 2026</div>
@@ -215,16 +215,26 @@ function syncTransportationWidths() {
 window.addEventListener('load', function () {
   setTimeout(syncTransportationWidths, 50);
 });
-window.addEventListener('resize', function () {
-  // debounce a bit to avoid thrashing on continuous resize
-  if (window._syncTransportTimer) clearTimeout(window._syncTransportTimer);
-  window._syncTransportTimer = setTimeout(function () {
-    syncTransportationWidths();
-  }, 120);
-});
+(function () {
+  var syncTransportTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(syncTransportTimer);
+    syncTransportTimer = setTimeout(syncTransportationWidths, 120);
+  });
+})();
 
 // Also run after nav is injected (nav fetch callback calls initMobileNav and returns) — run on DOMContentLoaded to be safe
 window.addEventListener('DOMContentLoaded', function () {
   setTimeout(syncTransportationWidths, 60);
+});
+
+// Handle hotel booking button (travel.html) — wired here to avoid inline onclick in markup
+window.addEventListener('DOMContentLoaded', function () {
+  var bookBtn = document.querySelector('.book-hotel-button[data-href]');
+  if (bookBtn) {
+    bookBtn.addEventListener('click', function () {
+      window.open(this.dataset.href, '_blank');
+    });
+  }
 });
 
