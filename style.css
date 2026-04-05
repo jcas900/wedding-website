@@ -1143,3 +1143,146 @@ h1 {
   box-shadow: 0 8px 20px rgba(57,83,115,0.12);
   border-color: var(--primary-color-dark);
 }
+
+/* ============================================================
+   Bus RSVP page
+   ============================================================ */
+
+/* Form container: left-align fields, centered block */
+.bus-rsvp-page .bus-rsvp-info {
+  text-align: left;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Instruction paragraph spacing */
+.bus-rsvp-page .bus-rsvp-info > .transportation-info {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+/* Field wrapper */
+.bus-rsvp-page .bus-rsvp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.4rem;
+}
+
+/* Label */
+.bus-rsvp-page .bus-rsvp-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: inherit;
+  color: var(--text-color);
+  letter-spacing: 0.3px;
+}
+
+/* Text input */
+.bus-rsvp-page .bus-rsvp-input {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: inherit;
+  color: var(--text-color);
+  background-color: white;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  padding: 0.65rem 0.8rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  outline: none;
+}
+
+.bus-rsvp-page .bus-rsvp-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(81, 98, 115, 0.12);
+}
+
+/* Checkbox group */
+.bus-rsvp-page .bus-rsvp-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 1.8rem;
+}
+
+/* Each checkbox row: native checkbox + label text */
+.bus-rsvp-page .bus-rsvp-checkbox-label {
+  display: grid;
+  grid-template-columns: 1.3rem 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.65rem;
+  align-items: start;
+  cursor: pointer;
+}
+
+.bus-rsvp-page .bus-rsvp-checkbox {
+  grid-row: 1;
+  grid-column: 1;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.2rem;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.bus-rsvp-page .bus-rsvp-checkbox-main {
+  grid-row: 1;
+  grid-column: 2;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: inherit;
+  color: var(--text-color);
+  line-height: 1.3;
+}
+
+.bus-rsvp-page .bus-rsvp-checkbox-detail {
+  grid-row: 2;
+  grid-column: 2;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.88em;
+  color: var(--accent-color);
+  line-height: 1.4;
+  margin-top: 0.1rem;
+}
+
+/* Inline validation errors (hidden by default, shown by JS) */
+.bus-rsvp-page .bus-rsvp-field-error {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.88em;
+  color: #b03a2e;
+  margin: 0.15rem 0 0;
+  display: none;
+}
+
+/* Submit button: full-width within form */
+.bus-rsvp-page .bus-rsvp-submit-btn {
+  width: 100%;
+}
+
+.bus-rsvp-page .bus-rsvp-submit-btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+}
+
+/* Success / error state icon tints */
+.bus-rsvp-page .bus-rsvp-success-icon i {
+  color: #4a7c59;
+}
+
+.bus-rsvp-page .bus-rsvp-error-icon i {
+  color: #9b3a2e;
+}
+
+@media (max-width: 480px) {
+  .bus-rsvp-page .bus-rsvp-info {
+    max-width: 100%;
+  }
+}

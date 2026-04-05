@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Bus RSVP - Amanda & Jordan's Wedding</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="centered-page travel-page bus-rsvp-page">
+    <button class="menu-toggle">☰</button>
+    <nav></nav>
+
+    <div class="content-wrapper">
+        <main>
+
+            <!-- FORM STATE -->
+            <div id="bus-rsvp-form-container">
+                <section class="flight-section">
+                    <div class="section-icon"><i class="fas fa-bus"></i></div>
+                    <h2 class="match-intro-location">Bus RSVP</h2>
+                    <div class="airport-info hotel-info bus-rsvp-info">
+
+                        <p class="airports match-intro-location transportation-info">
+                            Please let us know if you'll be taking the bus to and/or from the wedding.
+                        </p>
+
+                        <form id="bus-rsvp-form" novalidate>
+
+                            <div class="bus-rsvp-field">
+                                <label class="bus-rsvp-label" for="guest-names">Name(s)</label>
+                                <input
+                                    type="text"
+                                    id="guest-names"
+                                    name="names"
+                                    class="bus-rsvp-input"
+                                    placeholder="e.g. Jordan & Amanda Castleman"
+                                    autocomplete="name"
+                                >
+                                <p class="bus-rsvp-field-error" id="names-error">Please enter your name(s).</p>
+                            </div>
+
+                            <div class="bus-rsvp-checkboxes">
+                                <label class="bus-rsvp-checkbox-label">
+                                    <input type="checkbox" name="bus_to" value="yes" class="bus-rsvp-checkbox">
+                                    <span class="bus-rsvp-checkbox-main">Bus <strong>to</strong> the venue</span>
+                                    <span class="bus-rsvp-checkbox-detail">Departing Loews Regency New York at 4:45pm sharp</span>
+                                </label>
+                                <label class="bus-rsvp-checkbox-label">
+                                    <input type="checkbox" name="bus_from_wedding" value="yes" class="bus-rsvp-checkbox">
+                                    <span class="bus-rsvp-checkbox-main">Bus <strong>from</strong> the venue at conclusion of wedding</span>
+                                    <span class="bus-rsvp-checkbox-detail">Departing Quaker Ridge Golf Club at end of wedding</span>
+                                </label>
+                                <label class="bus-rsvp-checkbox-label">
+                                    <input type="checkbox" name="bus_from_party" value="yes" class="bus-rsvp-checkbox">
+                                    <span class="bus-rsvp-checkbox-main">Bus <strong>from</strong> the venue at conclusion of after party</span>
+                                    <span class="bus-rsvp-checkbox-detail">Departing Quaker Ridge Golf Club at end of after party</span>
+                                </label>
+                                <p class="bus-rsvp-field-error" id="checkbox-error">Please select at least one bus option.</p>
+                            </div>
+
+                            <button type="submit" class="book-hotel-button bus-rsvp-submit-btn">
+                                Submit RSVP
+                            </button>
+
+                        </form>
+
+                    </div>
+                </section>
+            </div>
+
+            <!-- SUCCESS STATE -->
+            <div id="bus-rsvp-success" style="display:none;">
+                <section class="flight-section">
+                    <div class="section-icon bus-rsvp-success-icon"><i class="fas fa-circle-check"></i></div>
+                    <h2 class="match-intro-location">You're all set!</h2>
+                    <div class="airport-info hotel-info">
+                        <p class="airports match-intro-location transportation-info" id="bus-rsvp-success-message"></p>
+                        <p class="airports match-intro-location transportation-info">We look forward to seeing you on October 17, 2026!</p>
+                        <a class="book-hotel-button" href="travel.html">Back to Travel Info</a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- ERROR STATE -->
+            <div id="bus-rsvp-error" style="display:none;">
+                <section class="flight-section">
+                    <div class="section-icon bus-rsvp-error-icon"><i class="fas fa-triangle-exclamation"></i></div>
+                    <h2 class="match-intro-location">Something went wrong</h2>
+                    <div class="airport-info hotel-info">
+                        <p class="airports match-intro-location transportation-info">
+                            We couldn't record your RSVP. Please try again, or reach out to us directly.
+                        </p>
+                        <button class="book-hotel-button" type="button" id="bus-rsvp-retry-btn">Try Again</button>
+                    </div>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+    (function () {
+        // REPLACE THIS with your deployed Google Apps Script Web App URL
+        var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxcycpuAkb2mCgFUpnCIOG0juqbrRovIeOxIrc0cWXo-LD8u7YnzkU7LnIUKLO_Z_1B/exec';
+
+        var formContainer = document.getElementById('bus-rsvp-form-container');
+        var form          = document.getElementById('bus-rsvp-form');
+        var successEl     = document.getElementById('bus-rsvp-success');
+        var errorEl       = document.getElementById('bus-rsvp-error');
+        var successMsg    = document.getElementById('bus-rsvp-success-message');
+        var retryBtn      = document.getElementById('bus-rsvp-retry-btn');
+        var submitBtn     = form.querySelector('.bus-rsvp-submit-btn');
+        var namesInput    = document.getElementById('guest-names');
+        var namesError    = document.getElementById('names-error');
+        var checkboxError = document.getElementById('checkbox-error');
+
+        function showForm() {
+            formContainer.style.display = '';
+            successEl.style.display     = 'none';
+            errorEl.style.display       = 'none';
+        }
+
+        function validate() {
+            var valid = true;
+            namesError.style.display    = 'none';
+            checkboxError.style.display = 'none';
+
+            if (!namesInput.value.trim()) {
+                namesError.style.display = 'block';
+                namesInput.focus();
+                valid = false;
+            }
+
+            var toBus        = form.querySelector('[name="bus_to"]').checked;
+            var fromWedding  = form.querySelector('[name="bus_from_wedding"]').checked;
+            var fromParty    = form.querySelector('[name="bus_from_party"]').checked;
+            if (!toBus && !fromWedding && !fromParty) {
+                checkboxError.style.display = 'block';
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!validate()) return;
+
+            var toBus       = form.querySelector('[name="bus_to"]').checked;
+            var fromWedding = form.querySelector('[name="bus_from_wedding"]').checked;
+            var fromParty   = form.querySelector('[name="bus_from_party"]').checked;
+            var names = namesInput.value.trim();
+
+            var selections = [];
+            if (toBus)       selections.push('to the venue');
+            if (fromWedding) selections.push('from the venue at the conclusion of the wedding');
+            if (fromParty)   selections.push('from the venue at the conclusion of the after party');
+            var busLabel = selections.length === 1
+                ? selections[0]
+                : selections.slice(0, -1).join(', ') + ' and ' + selections[selections.length - 1];
+
+            submitBtn.disabled    = true;
+            submitBtn.textContent = 'Submitting\u2026';
+
+            var params = new URLSearchParams({
+                timestamp:        new Date().toISOString(),
+                names:            names,
+                bus_to:           toBus       ? 'Yes' : 'No',
+                bus_from_wedding: fromWedding ? 'Yes' : 'No',
+                bus_from_party:   fromParty   ? 'Yes' : 'No'
+            });
+
+            // Apps Script 302-redirects POST requests and strips the body; use GET with query params instead.
+            fetch(APPS_SCRIPT_URL + '?' + params.toString(), {
+                method: 'GET',
+                mode:   'no-cors'
+            })
+            .then(function () {
+                successMsg.textContent = 'We\u2019ve noted that ' + names + ' will be taking the bus ' + busLabel + '.';
+                formContainer.style.display = 'none';
+                successEl.style.display     = '';
+            })
+            .catch(function () {
+                submitBtn.disabled    = false;
+                submitBtn.textContent = 'Submit RSVP';
+                formContainer.style.display = 'none';
+                errorEl.style.display       = '';
+            });
+        });
+
+        retryBtn.addEventListener('click', function () {
+            submitBtn.disabled    = false;
+            submitBtn.textContent = 'Submit RSVP';
+            showForm();
+        });
+    })();
+    </script>
+</body>
+</html>
