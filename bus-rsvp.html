@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Bus RSVP - Amanda & Jordan's Wedding</title>
+    <meta name="description" content="RSVP for the bus to and from Amanda & Jordan's wedding at Quaker Ridge Golf Club." />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#e8eef4" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <script>if (!localStorage.getItem('isAuthenticated')) location.replace('login.html');</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" />
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="script.js" defer></script>
 </head>
 <body class="centered-page travel-page bus-rsvp-page">
-    <button class="menu-toggle">☰</button>
+    <!-- Icons: Font Awesome Free 6 (CC BY 4.0) — fontawesome.com/license/free -->
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
     <nav></nav>
 
     <div class="content-wrapper">
@@ -18,7 +28,7 @@
             <!-- FORM STATE -->
             <div id="bus-rsvp-form-container">
                 <section class="flight-section">
-                    <div class="section-icon"><i class="fas fa-bus"></i></div>
+                    <div class="section-icon"><svg viewBox="0 0 576 512" aria-hidden="true"><path d="M288 0C422.4 0 512 35.2 512 80V96l0 32c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32l0 160c0 17.7-14.3 32-32 32v32c0 17.7-14.3 32-32 32H416c-17.7 0-32-14.3-32-32V448H192v32c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32l0-32c-17.7 0-32-14.3-32-32l0-160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h0V96h0V80C64 35.2 153.6 0 288 0zM128 160v96c0 17.7 14.3 32 32 32H272V128H160c-17.7 0-32 14.3-32 32zM304 288H416c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H304V288zM144 400a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm288 0a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM384 80c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16s7.2 16 16 16H368c8.8 0 16-7.2 16-16z"/></svg></div>
                     <h2 class="match-intro-location">Bus RSVP</h2>
                     <div class="airport-info hotel-info bus-rsvp-info">
 
@@ -73,7 +83,7 @@
             <!-- SUCCESS STATE -->
             <div id="bus-rsvp-success" style="display:none;">
                 <section class="flight-section">
-                    <div class="section-icon bus-rsvp-success-icon"><i class="fas fa-circle-check"></i></div>
+                    <div class="section-icon bus-rsvp-success-icon"><svg viewBox="0 0 512 512" aria-hidden="true"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg></div>
                     <h2 class="match-intro-location">You're all set!</h2>
                     <div class="airport-info hotel-info">
                         <p class="airports match-intro-location transportation-info" id="bus-rsvp-success-message"></p>
@@ -86,7 +96,7 @@
             <!-- ERROR STATE -->
             <div id="bus-rsvp-error" style="display:none;">
                 <section class="flight-section">
-                    <div class="section-icon bus-rsvp-error-icon"><i class="fas fa-triangle-exclamation"></i></div>
+                    <div class="section-icon bus-rsvp-error-icon"><svg viewBox="0 0 512 512" aria-hidden="true"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg></div>
                     <h2 class="match-intro-location">Something went wrong</h2>
                     <div class="airport-info hotel-info">
                         <p class="airports match-intro-location transportation-info">
@@ -102,7 +112,7 @@
 
     <script>
     (function () {
-        // REPLACE THIS with your deployed Google Apps Script Web App URL
+        // Google Apps Script Web App endpoint that records RSVPs to the spreadsheet
         var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxcycpuAkb2mCgFUpnCIOG0juqbrRovIeOxIrc0cWXo-LD8u7YnzkU7LnIUKLO_Z_1B/exec';
 
         var formContainer = document.getElementById('bus-rsvp-form-container');

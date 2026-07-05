@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Travel - Amanda & Jordan's Wedding</title>
+    <meta name="description" content="Travel and accommodations for Amanda & Jordan's wedding — hotel block at the Loews Regency New York and buses to Quaker Ridge Golf Club." />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#e8eef4" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <script>if (!localStorage.getItem('isAuthenticated')) location.replace('login.html');</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" />
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="script.js" defer></script>
 </head>
 <body class="centered-page travel-page">
-    <button class="menu-toggle">☰</button>
+    <!-- Icons: Font Awesome Free 6 (CC BY 4.0) — fontawesome.com/license/free -->
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
     <nav></nav>
 
     <div class="content-wrapper">
@@ -19,19 +29,19 @@
             </div>
 
             <section class="hotel-section">
-                <div class="section-icon"><i class="fas fa-hotel"></i></div>
+                <div class="section-icon"><svg viewBox="0 0 512 512" aria-hidden="true"><path d="M0 32C0 14.3 14.3 0 32 0H480c17.7 0 32 14.3 32 32s-14.3 32-32 32V448c17.7 0 32 14.3 32 32s-14.3 32-32 32H304V464c0-26.5-21.5-48-48-48s-48 21.5-48 48v48H32c-17.7 0-32-14.3-32-32s14.3-32 32-32V64C14.3 64 0 49.7 0 32zm96 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H112c-8.8 0-16 7.2-16 16zM240 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H240zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H368c-8.8 0-16 7.2-16 16zM112 192c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H112zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H240c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H368zM328 384c13.3 0 24.3-10.9 21-23.8c-10.6-41.5-48.2-72.2-93-72.2s-82.5 30.7-93 72.2c-3.3 12.8 7.8 23.8 21 23.8H328z"/></svg></div>
                 <h2 class="match-intro-location">Hotel</h2>
                 <div class="hotel-info">
                     <h3 class="hotel-name match-event-date">Loews Regency New York</h3>
                     <p class="hotel-address">540 Park Ave, New York, NY 10065</p>
                     <p class="hotel-phone"><a href="tel:2127594100">(212) 759-4100</a></p>
                     <p class="transportation-info">We have reserved a block of rooms from <span class="nowrap">October 16-18</span>. Please book before September 16 using the link below.</p>
-                    <button class="book-hotel-button" type="button" data-href="https://www.loewshotels.com/regency-hotel/shapiro-castleman-wedding-room-block" aria-label="Book hotel">Book Here</button>
+                    <a class="book-hotel-button" href="https://www.loewshotels.com/regency-hotel/shapiro-castleman-wedding-room-block" target="_blank" rel="noopener">Book Here</a>
                 </div>
             </section>
 
             <section class="flight-section">
-                <div class="section-icon"><i class="fas fa-car"></i></div>
+                <div class="section-icon"><svg viewBox="0 0 512 512" aria-hidden="true"><path d="M135.2 117.4L109.1 192H402.9l-26.1-74.6C372.3 104.6 360.2 96 346.6 96H165.4c-13.6 0-25.7 8.6-30.2 21.4zM39.6 196.8L74.8 96.3C88.3 57.8 124.6 32 165.4 32H346.6c40.8 0 77.1 25.8 90.6 64.3l35.2 100.5c23.2 9.6 39.6 32.5 39.6 59.2V400v48c0 17.7-14.3 32-32 32H448c-17.7 0-32-14.3-32-32V400H96v48c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V400 256c0-26.7 16.4-49.6 39.6-59.2zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg></div>
                 <h2 class="match-intro-location">Transportation</h2>
                 <div class="airport-info hotel-info">
                     <p class="airports match-intro-location transportation-info">We will be providing buses to/from the wedding for anyone who does not wish to arrange their own transportation.</p>

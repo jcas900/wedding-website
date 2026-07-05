@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Montserrat:wght@300;400;500&display=swap');
+/* Fonts are loaded via <link> tags in each page's <head> (faster than @import). */
 
 :root {
   --nav-width: 200px;
@@ -707,6 +707,15 @@ h1 {
   color: var(--primary-color);
 }
 
+/* Inline SVG icons (replaces the Font Awesome webfont): size to the icon font-size
+   and tint via currentColor so the existing color rules keep working. */
+.section-icon svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.125em;
+}
+
 /* Ensure specific travel text that previously used fixed sizes inherit the scaled base size unless explicitly overridden */
 .travel-page .hotel-info,
 .travel-page .hotel-address,
@@ -928,6 +937,10 @@ h1 {
 }
 .lightbox[aria-hidden="false"] {
   display: flex;
+}
+/* Prevent the page behind the lightbox from scrolling while it is open */
+body.lightbox-open {
+  overflow: hidden;
 }
 .lightbox-content {
   max-width: 1200px;
@@ -1273,11 +1286,11 @@ h1 {
 }
 
 /* Success / error state icon tints */
-.bus-rsvp-page .bus-rsvp-success-icon i {
+.bus-rsvp-page .bus-rsvp-success-icon {
   color: #4a7c59;
 }
 
-.bus-rsvp-page .bus-rsvp-error-icon i {
+.bus-rsvp-page .bus-rsvp-error-icon {
   color: #9b3a2e;
 }
 

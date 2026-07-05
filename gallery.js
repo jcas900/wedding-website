@@ -1,5 +1,5 @@
-// script.new.js
-// Build the homepage gallery by appending images from the images/gallery folder.
+// gallery.js
+// Build the gallery grid from images/gallery and drive the lightbox.
 (function () {
   'use strict';
 
@@ -96,7 +96,8 @@
   /* Lightbox implementation */
   var lightboxState = {
     images: [], // array of {src, alt, caption}
-    currentIndex: -1
+    currentIndex: -1,
+    opener: null // element to return focus to when the lightbox closes
   };
 
   function collectGalleryImages() {
@@ -126,6 +127,8 @@
     lbCaption.textContent = meta.caption || meta.alt || '';
 
     lb.setAttribute('aria-hidden', 'false');
+    // lock page scroll behind the overlay
+    document.body.classList.add('lightbox-open');
     // trap focus on the lightbox close button
     var closeBtn = lb.querySelector('.lightbox-close');
     if (closeBtn) closeBtn.focus();
@@ -136,11 +139,17 @@
     var lbImg = document.getElementById('lightbox-image');
     if (!lb) return;
     lb.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lightbox-open');
     if (lbImg) {
       lbImg.src = '';
       lbImg.alt = '';
     }
     lightboxState.currentIndex = -1;
+    // return focus to the image that opened the lightbox
+    if (lightboxState.opener && lightboxState.opener.focus) {
+      lightboxState.opener.focus();
+    }
+    lightboxState.opener = null;
   }
 
   function showNext() {
@@ -169,6 +178,7 @@
         var idx = imgs.findIndex(function (i) { return i.src === clickedSrc; });
         if (idx >= 0) {
           ev.preventDefault();
+          lightboxState.opener = target;
           openLightbox(idx);
         }
       }
@@ -191,6 +201,22 @@
     // Prev/Next
     if (nextBtn) nextBtn.addEventListener('click', function (ev) { ev.stopPropagation(); showNext(); });
     if (prevBtn) prevBtn.addEventListener('click', function (ev) { ev.stopPropagation(); showPrev(); });
+
+    // Touch swipe support (the prev/next buttons are hidden on small screens)
+    var touchStartX = 0;
+    var touchStartY = 0;
+    lb.addEventListener('touchstart', function (ev) {
+      if (ev.touches.length !== 1) return;
+      touchStartX = ev.touches[0].clientX;
+      touchStartY = ev.touches[0].clientY;
+    }, { passive: true });
+    lb.addEventListener('touchend', function (ev) {
+      var dx = ev.changedTouches[0].clientX - touchStartX;
+      var dy = ev.changedTouches[0].clientY - touchStartY;
+      // require a mostly-horizontal swipe of at least 40px
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+      if (dx < 0) { showNext(); } else { showPrev(); }
+    }, { passive: true });
 
     // Keyboard support
     document.addEventListener('keydown', function (ev) {

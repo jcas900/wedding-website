@@ -1,7 +1,5 @@
-// Check authentication
-if (!localStorage.getItem('isAuthenticated')) {
-  window.location.href = 'login.html';
-}
+// NOTE: the authentication check lives in a tiny inline <script> in each page's <head>
+// so it runs before first paint (no flash of protected content).
 
 // Viewport helper: set --vh to window.innerHeight * 0.01 to account for mobile browser chrome
 function setViewportHeightVar() {
@@ -226,15 +224,5 @@ window.addEventListener('load', function () {
 // Also run after nav is injected (nav fetch callback calls initMobileNav and returns) — run on DOMContentLoaded to be safe
 window.addEventListener('DOMContentLoaded', function () {
   setTimeout(syncTransportationWidths, 60);
-});
-
-// Handle hotel booking button (travel.html) — wired here to avoid inline onclick in markup
-window.addEventListener('DOMContentLoaded', function () {
-  var bookBtn = document.querySelector('.book-hotel-button[data-href]');
-  if (bookBtn) {
-    bookBtn.addEventListener('click', function () {
-      window.open(this.dataset.href, '_blank');
-    });
-  }
 });
 
