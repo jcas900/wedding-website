@@ -65,9 +65,13 @@ body {
     position: fixed;
     inset: 0;
     width: 100%;
-    height: 100svh;
-    height: 100dvh;
+    /* Order matters: the last supported value wins. 100dvh must come LAST so modern
+       iOS tracks the collapsing Safari toolbar; the JS --vh value is only a fallback
+       for older browsers (it is a stale snapshot of innerHeight on newer iPhones). */
+    height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
+    height: 100dvh;
+    overscroll-behavior: contain; /* don't chain menu scrolling to the page behind it */
     background-color: var(--nav-bg);
     /* add safe-area padding so content doesn't sit under notch/dynamic island */
     padding-top: calc(var(--spacing) * 2 + env(safe-area-inset-top, 0));
@@ -89,6 +93,11 @@ body {
     visibility: visible;
   }
 
+  /* Lock the page while the menu is open so scrolling can't reveal it behind the overlay */
+  body.nav-active {
+    overflow: hidden;
+  }
+
   /* center the nav items */
   .mobile-nav-content {
     display: flex;
@@ -96,6 +105,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: calc(100svh - (var(--spacing) * 4) - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0));
+    min-height: calc(100dvh - (var(--spacing) * 4) - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0));
     box-sizing: border-box;
     gap: 1rem;
     padding-bottom: 2rem;
