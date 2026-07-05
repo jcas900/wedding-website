@@ -34,16 +34,31 @@
         var passwordInput = document.getElementById('password');
         var errorMessage = document.getElementById('error-message');
 
+        // Where to send the guest after login: the page they originally asked for
+        // (saved by the auth guard before redirecting here), or the homepage.
+        function postLoginTarget() {
+            var target = 'index.html';
+            try {
+                var stored = sessionStorage.getItem('postLoginRedirect');
+                // only accept same-site relative paths like "/bus-rsvp.html"
+                if (stored && stored.charAt(0) === '/' && stored.charAt(1) !== '/') {
+                    target = stored;
+                }
+                sessionStorage.removeItem('postLoginRedirect');
+            } catch (e) {}
+            return target;
+        }
+
         // Already authenticated? Skip straight to the site.
         if (localStorage.getItem('isAuthenticated')) {
-            location.replace('index.html');
+            location.replace(postLoginTarget());
         }
 
         document.getElementById('login-form').addEventListener('submit', function (e) {
             e.preventDefault();
             if (passwordInput.value === "101726") {
                 localStorage.setItem('isAuthenticated', 'true');
-                location.replace('index.html');
+                location.replace(postLoginTarget());
             } else {
                 errorMessage.style.display = 'block';
                 passwordInput.value = '';

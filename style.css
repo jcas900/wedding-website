@@ -777,11 +777,13 @@ h1 {
   line-height: 1.35;
 }
 
-.travel-page .hotel-phone a {
+.travel-page .hotel-phone a,
+.travel-page a.address-link {
   color: var(--primary-color);
   text-decoration: none;
 }
-.travel-page .hotel-phone a:hover {
+.travel-page .hotel-phone a:hover,
+.travel-page a.address-link:hover {
   color: var(--primary-color-dark);
   text-decoration: underline;
 }

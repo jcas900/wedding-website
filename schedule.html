@@ -10,7 +10,7 @@
   <link rel="icon" href="favicon.ico" sizes="48x48" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <script>if (!localStorage.getItem('isAuthenticated')) location.replace('login.html');</script>
+  <script>if (!localStorage.getItem('isAuthenticated')) { try { sessionStorage.setItem('postLoginRedirect', location.pathname + location.search); } catch (e) {} location.replace('login.html'); }</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" />
@@ -42,7 +42,8 @@
         <h2 class="match-intro-location">Ceremony & Reception</h2>
         <div class="airport-info hotel-info">
           <p class="airports match-intro-location transportation-info">The wedding is called for 6:00pm at Quaker Ridge Golf Club.</p>
-          <p class="airports match-intro-location transportation-info">146 Griffen Ave, Scarsdale, NY 10583</p>
+          <p class="airports match-intro-location transportation-info"><a class="address-link" href="https://maps.google.com/?q=Quaker+Ridge+Golf+Club,+146+Griffen+Ave,+Scarsdale,+NY+10583" target="_blank" rel="noopener">146 Griffen Ave, Scarsdale, NY 10583</a></p>
+          <a class="book-hotel-button" href="wedding.ics" download="amanda-jordan-wedding.ics">Add to Calendar</a>
         </div>
       </section>
 

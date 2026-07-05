@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Amanda & Jordan//Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:wedding-20261017@amanda-jordan.com
+DTSTAMP:20260705T160000Z
+DTSTART:20261017T220000Z
+DTEND:20261018T040000Z
+SUMMARY:Amanda & Jordan's Wedding
+LOCATION:Quaker Ridge Golf Club\, 146 Griffen Ave\, Scarsdale\, NY 10583
+DESCRIPTION:The wedding is called for 6:00pm. Details: https://amanda-jordan.com
+URL:https://amanda-jordan.com
+END:VEVENT
+END:VCALENDAR

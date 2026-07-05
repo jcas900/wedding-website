@@ -10,7 +10,7 @@
     <link rel="icon" href="favicon.ico" sizes="48x48" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <script>if (!localStorage.getItem('isAuthenticated')) location.replace('login.html');</script>
+    <script>if (!localStorage.getItem('isAuthenticated')) { try { sessionStorage.setItem('postLoginRedirect', location.pathname + location.search); } catch (e) {} location.replace('login.html'); }</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" />
@@ -33,7 +33,7 @@
                 <h2 class="match-intro-location">Hotel</h2>
                 <div class="hotel-info">
                     <h3 class="hotel-name match-event-date">Loews Regency New York</h3>
-                    <p class="hotel-address">540 Park Ave, New York, NY 10065</p>
+                    <p class="hotel-address"><a class="address-link" href="https://maps.google.com/?q=Loews+Regency+New+York,+540+Park+Ave,+New+York,+NY+10065" target="_blank" rel="noopener">540 Park Ave, New York, NY 10065</a></p>
                     <p class="hotel-phone"><a href="tel:2127594100">(212) 759-4100</a></p>
                     <p class="transportation-info">We have reserved a block of rooms from <span class="nowrap">October 16-18</span>. Please book before September 16 using the link below.</p>
                     <a class="book-hotel-button" href="https://www.loewshotels.com/regency-hotel/shapiro-castleman-wedding-room-block" target="_blank" rel="noopener">Book Here</a>

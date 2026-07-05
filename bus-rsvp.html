@@ -10,7 +10,7 @@
     <link rel="icon" href="favicon.ico" sizes="48x48" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <script>if (!localStorage.getItem('isAuthenticated')) location.replace('login.html');</script>
+    <script>if (!localStorage.getItem('isAuthenticated')) { try { sessionStorage.setItem('postLoginRedirect', location.pathname + location.search); } catch (e) {} location.replace('login.html'); }</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" />
@@ -60,12 +60,12 @@
                                 <label class="bus-rsvp-checkbox-label">
                                     <input type="checkbox" name="bus_from_wedding" value="yes" class="bus-rsvp-checkbox">
                                     <span class="bus-rsvp-checkbox-main">Bus <strong>from</strong> the venue at conclusion of wedding</span>
-                                    <span class="bus-rsvp-checkbox-detail">Departing Quaker Ridge Golf Club at end of wedding</span>
+                                    <span class="bus-rsvp-checkbox-detail">Departing Quaker Ridge Golf Club at the end of the wedding (around 12:00am)</span>
                                 </label>
                                 <label class="bus-rsvp-checkbox-label">
                                     <input type="checkbox" name="bus_from_party" value="yes" class="bus-rsvp-checkbox">
                                     <span class="bus-rsvp-checkbox-main">Bus <strong>from</strong> the venue at conclusion of after party</span>
-                                    <span class="bus-rsvp-checkbox-detail">Departing Quaker Ridge Golf Club at end of after party</span>
+                                    <span class="bus-rsvp-checkbox-detail">Departing Quaker Ridge Golf Club at the end of the after party (around 1:30am)</span>
                                 </label>
                                 <p class="bus-rsvp-field-error" id="checkbox-error">Please select at least one bus option.</p>
                             </div>
@@ -183,11 +183,18 @@
             });
 
             // Apps Script 302-redirects POST requests and strips the body; use GET with query params instead.
-            fetch(APPS_SCRIPT_URL + '?' + params.toString(), {
-                method: 'GET',
-                mode:   'no-cors'
+            // The web app is deployed with "Anyone" access, so the final response is CORS-readable and
+            // we only show success once the script confirms the row was actually recorded.
+            var abortController = new AbortController();
+            var fetchTimeout = setTimeout(function () { abortController.abort(); }, 15000);
+
+            fetch(APPS_SCRIPT_URL + '?' + params.toString(), { signal: abortController.signal })
+            .then(function (res) {
+                if (!res.ok) throw new Error('http-' + res.status);
+                return res.json();
             })
-            .then(function () {
+            .then(function (data) {
+                if (!data || data.result !== 'success') throw new Error('apps-script-error');
                 successMsg.textContent = 'We\u2019ve noted that ' + names + ' will be taking the bus ' + busLabel + '.';
                 formContainer.style.display = 'none';
                 successEl.style.display     = '';
@@ -197,6 +204,9 @@
                 submitBtn.textContent = 'Submit RSVP';
                 formContainer.style.display = 'none';
                 errorEl.style.display       = '';
+            })
+            .finally(function () {
+                clearTimeout(fetchTimeout);
             });
         });
 
