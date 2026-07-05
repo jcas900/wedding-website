@@ -182,6 +182,10 @@ function initMobileNav() {
 // computed width to the flight-section transportation paragraph so they match exactly.
 function syncTransportationWidths() {
   try {
+    // Travel-page-only layout tweak; the schedule page shares the travel-page class but
+    // must keep its own paragraph widths/margins (see .schedule-page rules in style.css).
+    if (!document.body || document.body.classList.contains('schedule-page')) return;
+
     var hotelP = document.querySelector('.hotel-section .transportation-info');
     var flightP = document.querySelector('.flight-section .transportation-info');
     if (!hotelP || !flightP) return;

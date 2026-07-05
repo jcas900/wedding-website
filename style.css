@@ -1049,6 +1049,13 @@ body.lightbox-open {
   font-weight: 300;
 }
 
+/* Schedule page: single-space every text line within a section (no extra paragraph gaps) */
+.schedule-page .hotel-info .hotel-address,
+.schedule-page .hotel-info .transportation-info,
+.schedule-page .hotel-info .airports {
+  margin: 0;
+}
+
 /* Utility: visually hidden but accessible to screen readers */
 .sr-only {
   position: absolute !important;
