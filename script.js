@@ -100,10 +100,23 @@ function initMobileNav() {
   document.body.classList.remove('nav-active');
   toggleBtn.textContent = '\u2630'; // hamburger
 
+  // Scroll position saved while the menu is open (see body lock below)
+  var savedScrollY = 0;
+
   // Simple open/close functions that only toggle the nav and body classes
   function openMenu() {
     nav.classList.add('active');
     document.body.classList.add('nav-active');
+    // iOS Safari ignores overflow:hidden on body for touch scrolling, so pin the
+    // body in place with position:fixed while the menu is open. The overlay is
+    // opaque, so the page jumping to top behind it is invisible; we restore the
+    // scroll position on close.
+    savedScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = -savedScrollY + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
     // reset nav scroll to top when opening
     try { nav.scrollTop = 0; } catch (e) {}
     if (mobileNavContent) try { mobileNavContent.scrollTop = 0; } catch(e) {}
@@ -114,6 +127,13 @@ function initMobileNav() {
   function closeMenu() {
     nav.classList.remove('active');
     document.body.classList.remove('nav-active');
+    // undo the body lock and restore where the guest was scrolled to
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, savedScrollY);
     toggleBtn.setAttribute('aria-expanded', 'false');
     toggleBtn.textContent = '\u2630';
   }
